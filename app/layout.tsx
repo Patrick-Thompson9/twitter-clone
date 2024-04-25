@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Howl",
-  description: "Twitter Clone Chat App",
+  description: "Twitter Clone Chat App Howl",
 };
 
 export default function RootLayout({
