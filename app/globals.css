@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* static gradient on the shiny button */
+.button-radial-gradient {
+  background: radial-gradient(
+      circle at 50% 0%,
+      rgba(245, 245, 245, 0.1) 3%,
+      transparent 70%
+    ),
+    rgb(51, 53, 54);
+}
+
+/* shadow moving across the shiny button */
+.linear-mask {
+  mask-image: linear-gradient(
+    -60deg,
+    black calc(var(--x) + 15%),
+    transparent calc(var(--x) + 20%),
+    black calc(var(--x) + 100%)
+  );
+  -webkit-mask-image: linear-gradient(
+    -60deg,
+    black calc(var(--x) + 15%),
+    transparent calc(var(--x) + 20%),
+    black calc(var(--x) + 100%)
+  );
+}
+
+/* border highlight moving across the shiny button */
+.linear-overlay {
+  background: linear-gradient(
+    -60deg,
+    rgba(163, 255, 253, 0.1) calc(var(--x) + 15%),
+    rgba(163, 255, 253, 0.6) calc(var(--x) + 20%),
+    rgba(163, 255, 253, 0.1) calc(var(--x) + 80%)
+  );
+  mask: linear-gradient(white, white) content-box, linear-gradient(white, white);
+  -webkit-mask: linear-gradient(white, white) content-box,
+    linear-gradient(white, white);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
+
+/* project card off screen */
+.off-screen {
+  opacity: 0;
+  transform: translateX(-100%);
+  filter: blur(5px);
+  transition: all 1s;
+}
+
+/* project card sliding in when in view */
+.slide-in {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+/* cancel animations if user prefers reduced motion */
+@media (prefers-reduced-motion) {
+  .linear-overlay,
+  .linear-mask,
+  .off-screen,
+  .slide-in {
+    transition: none;
+  }
+}
