@@ -11,7 +11,7 @@ function ShinyButton({ buttonText }: props) {
   const textClasses = "text-white";
 
   return (
-    <motion.button
+    <motion.div
       className={`relative w-full py-2 px-4 bg-white rounded-md transition-colors duration-1000 ${radialGradientClasses}`}
       initial={{ "--x": "100%" }}
       animate={{ "--x": "-75%" }}
@@ -41,7 +41,7 @@ function ShinyButton({ buttonText }: props) {
       <span
         className={`block absolute inset-0 rounded-md ${linearOverlayClasses}`}
       ></span>
-    </motion.button>
+    </motion.div>
   );
 }
 
