@@ -3,8 +3,8 @@ import { FaSistrix } from "react-icons/fa6";
 
 function SearchBar() {
   return (
-    <search className="absolute flex gap-1 left-0 top-[50%] text-xl translate-y-[-50%] mx-3">
-      <div className="text-4xl">
+    <search className="absolute flex items-center gap-1 left-0 top-[50%] text-xl translate-y-[-50%] mx-3">
+      <div className="text-2xl">
         <FaSistrix />
       </div>
       <label htmlFor="search" className="sr-only relative" />
