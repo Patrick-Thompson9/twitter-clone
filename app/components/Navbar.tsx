@@ -1,14 +1,8 @@
 "use client";
 import clsx from "clsx";
 import { useState } from "react";
-import {
-  FaGear,
-  FaSistrix,
-  FaX,
-  FaHouseChimneyCrack,
-  FaTree,
-} from "react-icons/fa6";
-import { GiWolfHowl, GiFox, GiStack } from "react-icons/gi";
+import { FaGear, FaX, FaHouseChimneyCrack, FaTree } from "react-icons/fa6";
+import { GiFox, GiStack } from "react-icons/gi";
 import SearchBar from "./SearchBar";
 
 const NavLinks = [
