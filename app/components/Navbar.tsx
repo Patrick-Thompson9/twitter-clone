@@ -16,7 +16,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav>
+    <nav className="fixed top-0 inset-x-0">
       <div>
         <div className="relative bg-slate-950 flex items-center justify-center w-full min-h-16">
           <SearchBar />
