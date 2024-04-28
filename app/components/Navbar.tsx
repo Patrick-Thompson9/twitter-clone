@@ -78,6 +78,7 @@ function Navbar() {
         </div>
       </div>
       <div className="bg-sky-200 h-px w-full" />
+      <div className="text-white bg-gradient-to-b from-sky-200/10 to-sky-200/0 h-10" />
     </nav>
   );
 }
