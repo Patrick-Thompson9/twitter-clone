@@ -34,7 +34,7 @@ function Navbar() {
               id="search"
               type="text"
               placeholder="Search..."
-              className="bg-slate-800 text-white border border-white/40 rounded-md px-2 py-1 w-40 font-extralight"
+              className="bg-slate-900 text-white border border-white/40 rounded-md px-2 py-1 w-40 font-extralight"
             />
           </search>
           <div className="absolute right-0">
@@ -92,7 +92,7 @@ function Navbar() {
               id="search"
               type="text"
               placeholder="Search..."
-              className="bg-slate-800 text-white border border-white/40 rounded-sm px-2 py-1 w-40 font-extralight"
+              className="bg-slate-900 text-white border border-white/40 rounded-sm px-2 py-1 max-w-40 lg:max-w-60 font-extralight"
             />
           </search>
 
