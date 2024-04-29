@@ -16,7 +16,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 inset-x-0">
+    <nav className="fixed top-0 inset-x-0 z-50">
       <div>
         <div className="relative bg-slate-950 flex items-center justify-center w-full min-h-16">
           <SearchBar />
@@ -34,7 +34,7 @@ function Navbar() {
             {/* Mobile Link List */}
             <div
               className={clsx(
-                "fixed bottom-0 left-0 right-0 top-0 z-40 flex flex-col items-center gap-4 bg-slate-950/90 transition-transform duration-300 ease-in-out motion-reduce:transition-none",
+                "fixed bottom-0 left-0 right-0 top-0 flex flex-col items-center gap-4 bg-slate-950/90 transition-transform duration-300 ease-in-out motion-reduce:transition-none",
                 isOpen ? "translate-x-0" : "translate-x-[100%]"
               )}
             >

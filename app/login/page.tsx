@@ -12,9 +12,9 @@ function page() {
       <span className="text-4xl md:text-7xl mt-4 text-center tracking-tight">
         Login
       </span>
-      <div className="border-sky-200/45 bg-gray-900 border shadow-xl rounded-lg mt-16 py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5 relative">
+      <div className="border-sky-200/45 bg-gray-900 border shadow-xl rounded-lg mt-16 py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5">
         <form>
-          <div className="flex flex-col items-start justify-center px-14">
+          <div className="flex flex-col items-start justify-center px-14 -z-20">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -36,8 +36,10 @@ function page() {
             </button>
 
             {/* Sign in With Providers Options */}
-            <div className="relative bg-sky-200/75 h-px w-[350px] place-self-center my-10">
-              <span className="absolute mt-4 bg-sky-200/0 inset-0">Or</span>
+            <div className="flex items-center justify-center w-full gap-4">
+              <div className="bg-sky-200/75 h-px w-full place-self-center my-10"></div>
+              <span className="font-medium tracking-wide">Or</span>
+              <div className="bg-sky-200/75 h-px w-full place-self-center my-10"></div>
             </div>
           </div>
         </form>
