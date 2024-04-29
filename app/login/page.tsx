@@ -1,10 +1,17 @@
+"use client";
 import React from "react";
 import { getProviders } from "next-auth/react";
 import ShinyButton from "../components/ShinyButton";
 import moonSVG from "../assets/moon.svg";
+interface Provider {
+  name: string;
+  id: string;
+  signinUrl: string;
+}
 
-function page() {
-  const props = getServerSidePropx();
+async function page() {
+  const res = await fetch("http://localhost:3000/api/auth/providers");
+  const providers = await res.json();
 
   return (
     <section className="flex flex-col place-items-center">
@@ -35,11 +42,29 @@ function page() {
               <ShinyButton buttonText="Login" />
             </button>
 
-            {/* Sign in With Providers Options */}
+            {/* "Or" separator */}
             <div className="flex items-center justify-center w-full gap-4">
               <div className="bg-sky-200/75 h-px w-full place-self-center my-10"></div>
               <span className="font-medium tracking-wide">Or</span>
               <div className="bg-sky-200/75 h-px w-full place-self-center my-10"></div>
+            </div>
+
+            {/* Sign in With Providers Options */}
+            <div className="flex flex-col items-center justify-center w-full gap-4">
+              <span className="text-lg">Sign in with:</span>
+              <div className="flex items-center justify-center w-full gap-4">
+                {(Object.values(providers) as Provider[]).map(
+                  (provider: Provider) => (
+                    <a
+                      key={provider.id}
+                      className="flex items-center justify-center gap-2"
+                      href={provider.signinUrl}
+                    >
+                      <span>{`Sign in with ${provider.name}`}</span>
+                    </a>
+                  )
+                )}
+              </div>
             </div>
           </div>
         </form>
