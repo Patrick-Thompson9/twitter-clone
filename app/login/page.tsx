@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
-import { getProviders } from "next-auth/react";
+import { getProviders, signIn } from "next-auth/react";
 import ShinyButton from "../components/ShinyButton";
 import moonSVG from "../assets/moon.svg";
+
 interface Provider {
   name: string;
   id: string;
@@ -10,8 +11,25 @@ interface Provider {
 }
 
 async function page() {
-  const res = await fetch("http://localhost:3000/api/auth/providers");
-  const providers = await res.json();
+  // const res = await fetch("http://localhost:3000/api/auth/providers");
+  // const providers = await res.json();
+  // console.log(providers);
+  const providers = {
+    github: {
+      id: "github",
+      name: "GitHub",
+      type: "oauth",
+      signinUrl: "http://localhost:3000/api/auth/signin/github",
+      callbackUrl: "http://localhost:3000/api/auth/callback/github",
+    },
+    google: {
+      id: "google",
+      name: "Google",
+      type: "oauth",
+      signinUrl: "http://localhost:3000/api/auth/signin/google",
+      callbackUrl: "http://localhost:3000/api/auth/callback/google",
+    },
+  };
 
   return (
     <section className="flex flex-col place-items-center">
@@ -20,7 +38,12 @@ async function page() {
         Login
       </span>
       <div className="border-sky-200/45 bg-gray-900 border shadow-xl rounded-lg mt-16 py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5">
-        <form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            return false;
+          }}
+        >
           <div className="flex flex-col items-start justify-center px-14 -z-20">
             <label htmlFor="email">Email</label>
             <input
@@ -52,16 +75,17 @@ async function page() {
             {/* Sign in With Providers Options */}
             <div className="flex flex-col items-center justify-center w-full gap-4">
               <span className="text-lg">Sign in with:</span>
-              <div className="flex items-center justify-center w-full gap-4">
+              <div className="flex flex-col items-center justify-center w-full">
                 {(Object.values(providers) as Provider[]).map(
                   (provider: Provider) => (
-                    <a
+                    <button
                       key={provider.id}
-                      className="flex items-center justify-center gap-2"
-                      href={provider.signinUrl}
+                      type="submit"
+                      className="mt-4 w-full"
+                      onClick={async () => await signIn(provider.id)}
                     >
-                      <span>{`Sign in with ${provider.name}`}</span>
-                    </a>
+                      <ShinyButton buttonText={provider.name} />
+                    </button>
                   )
                 )}
               </div>
