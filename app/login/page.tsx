@@ -13,9 +13,7 @@ async function page() {
       <span className="text-4xl md:text-7xl mt-4 text-center tracking-tight">
         Login
       </span>
-      <div className="border-sky-200/45 bg-gray-900 border shadow-xl rounded-lg mt-16 py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5">
-        <LoginForm providers={providers} />
-      </div>
+      <LoginForm providers={providers} />
     </section>
   );
 }
