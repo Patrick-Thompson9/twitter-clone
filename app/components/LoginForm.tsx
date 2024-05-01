@@ -28,11 +28,6 @@ function LoginForm({ providers }: Props) {
     });
   };
 
-  //   logos = {
-  //     "Google": ""
-
-  //   }
-
   return (
     <div className="border-sky-200/45 bg-gray-900 border shadow-xl rounded-lg my-12 py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5">
       <form onSubmit={handleSubmit}>
@@ -78,7 +73,7 @@ function LoginForm({ providers }: Props) {
               (provider: Provider) => (
                 <button
                   key={provider.id}
-                  type="submit"
+                  type="button"
                   className="mt-4 w-full"
                   onClick={async () => await signIn(provider.id)}
                 >
