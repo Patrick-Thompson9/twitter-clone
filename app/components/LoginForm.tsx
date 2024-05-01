@@ -28,6 +28,11 @@ function LoginForm({ providers }: Props) {
     });
   };
 
+  //   logos = {
+  //     "Google": ""
+
+  //   }
+
   return (
     <div className="border-sky-200/45 bg-gray-900 border shadow-xl rounded-lg my-12 py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5">
       <form onSubmit={handleSubmit}>
@@ -68,22 +73,22 @@ function LoginForm({ providers }: Props) {
           </div>
 
           {/* Sign in With Providers Options */}
-          <div className="flex flex-col items-center justify-center w-full gap-4">
-            <span className="text-lg">Sign in with:</span>
-            <div className="flex flex-col items-center justify-center w-full">
-              {(Object.values(providers) as Provider[]).map(
-                (provider: Provider) => (
-                  <button
-                    key={provider.id}
-                    type="submit"
-                    className="mt-4 w-full"
-                    onClick={async () => await signIn(provider.id)}
-                  >
-                    <ShinyButton buttonText={provider.name} />
-                  </button>
-                )
-              )}
-            </div>
+          <div className="flex flex-col items-center justify-center w-full">
+            {(Object.values(providers) as Provider[]).map(
+              (provider: Provider) => (
+                <button
+                  key={provider.id}
+                  type="submit"
+                  className="mt-4 w-full"
+                  onClick={async () => await signIn(provider.id)}
+                >
+                  <ShinyButton
+                    buttonText={`Sign in with ${provider.name}`}
+                    image={`${provider.name}-logo.svg`}
+                  />
+                </button>
+              )
+            )}
           </div>
         </div>
       </form>

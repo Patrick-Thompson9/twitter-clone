@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 
 interface props {
   buttonText: string;
+  image?: string | null;
 }
 
-function ShinyButton({ buttonText }: props) {
+function ShinyButton({ buttonText, image = null }: props) {
   const radialGradientClasses = "button-radial-gradient";
   const linearOverlayClasses = "p-px linear-overlay";
   const textClasses = "text-white";
@@ -33,11 +34,14 @@ function ShinyButton({ buttonText }: props) {
         },
       }}
     >
-      <span
-        className={`${textClasses} tracking-wide font-light size-full block relative linear-mask transition-colors duration-1000`}
-      >
-        {buttonText}
-      </span>
+      <div className="flex items-center justify-center">
+        {image && <img src={image} alt="logo" className="size-8" />}
+        <span
+          className={`${textClasses} tracking-wide font-light text-lg size-full block relative linear-mask transition-colors duration-1000`}
+        >
+          {buttonText}
+        </span>
+      </div>
       <span
         className={`block absolute inset-0 rounded-md ${linearOverlayClasses}`}
       ></span>
