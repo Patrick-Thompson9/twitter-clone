@@ -2,6 +2,8 @@
 import React from "react";
 import ShinyButton from "./ShinyButton";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
+import clsx from "clsx";
 
 type Provider = {
   name: string;
@@ -14,6 +16,8 @@ interface Props {
 }
 
 function LoginForm({ providers }: Props) {
+  const [wrongCredentials, setWrongCredentials] = useState(false);
+  console.log(wrongCredentials);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -21,10 +25,17 @@ function LoginForm({ providers }: Props) {
     const password = form.elements.namedItem("password") as HTMLInputElement;
     const username = form.elements.namedItem("username") as HTMLInputElement;
 
-    // TODO: redirect to login if incorrect credentials
     signIn("credentials", {
       username: username.value,
       password: password.value,
+      redirect: false,
+    }).then((result) => {
+      if (result?.error) {
+        setWrongCredentials(true);
+        console.error(result.error);
+      } else {
+        setWrongCredentials(false);
+      }
     });
   };
 
@@ -59,6 +70,17 @@ function LoginForm({ providers }: Props) {
           <button type="submit" className="mt-4 w-full">
             <ShinyButton buttonText="Login" />
           </button>
+          {/* <div
+            className={clsx(
+              "w-full bg-red-500/30 text-white font-medium text-center py-2 mt-1 rounded-md",
+              wrongCredentials ? "visible" : "hidden"
+            )}
+          > */}
+          <span className="text-red-500 w-full text-center mt-1 text-sm font-light">
+            <strong>Error:</strong> wrong username or password
+          </span>
+          {/* Error: Wrong Username or Password
+          </div> */}
 
           {/* "Or" separator */}
           <div className="flex items-center justify-center w-full gap-4">
