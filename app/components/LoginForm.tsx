@@ -101,7 +101,10 @@ function LoginForm({ providers }: Props) {
                   key={provider.id}
                   type="button"
                   className="mt-4 w-full"
-                  onClick={async () => await signIn(provider.id)}
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    await signIn(provider.id);
+                  }}
                 >
                   <ShinyButton
                     buttonText={`Sign in with ${provider.name}`}
