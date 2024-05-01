@@ -50,27 +50,10 @@ body,
   -webkit-mask-composite: xor;
 }
 
-/* project card off screen */
-.off-screen {
-  opacity: 0;
-  transform: translateX(-100%);
-  filter: blur(5px);
-  transition: all 1s;
-}
-
-/* project card sliding in when in view */
-.slide-in {
-  opacity: 1;
-  transform: translateX(0);
-  filter: blur(0);
-}
-
 /* cancel animations if user prefers reduced motion */
 @media (prefers-reduced-motion) {
   .linear-overlay,
-  .linear-mask,
-  .off-screen,
-  .slide-in {
+  .linear-mask {
     transition: none;
   }
 }
