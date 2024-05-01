@@ -1,9 +1,8 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import ShinyButton from "./ShinyButton";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
-import clsx from "clsx";
+import { useRef } from "react";
 
 type Provider = {
   name: string;
@@ -16,8 +15,14 @@ interface Props {
 }
 
 function LoginForm({ providers }: Props) {
-  const [wrongCredentials, setWrongCredentials] = useState(false);
-  console.log(wrongCredentials);
+  const wrongCredentials = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (wrongCredentials.current) {
+      wrongCredentials.current.style.display = "none";
+    }
+  }, []);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -31,10 +36,14 @@ function LoginForm({ providers }: Props) {
       redirect: false,
     }).then((result) => {
       if (result?.error) {
-        setWrongCredentials(true);
+        if (wrongCredentials.current) {
+          wrongCredentials.current.style.display = "block";
+        }
         console.error(result.error);
       } else {
-        setWrongCredentials(false);
+        if (wrongCredentials.current) {
+          wrongCredentials.current.style.display = "none";
+        }
       }
     });
   };
@@ -70,17 +79,12 @@ function LoginForm({ providers }: Props) {
           <button type="submit" className="mt-4 w-full">
             <ShinyButton buttonText="Login" />
           </button>
-          {/* <div
-            className={clsx(
-              "w-full bg-red-500/30 text-white font-medium text-center py-2 mt-1 rounded-md",
-              wrongCredentials ? "visible" : "hidden"
-            )}
-          > */}
-          <span className="text-red-500 w-full text-center mt-1 text-sm font-light">
+          <span
+            ref={wrongCredentials}
+            className="text-red-500 w-full text-center mt-1 text-sm font-light"
+          >
             <strong>Error:</strong> wrong username or password
           </span>
-          {/* Error: Wrong Username or Password
-          </div> */}
 
           {/* "Or" separator */}
           <div className="flex items-center justify-center w-full gap-4">
