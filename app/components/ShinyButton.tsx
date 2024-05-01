@@ -28,7 +28,7 @@ function ShinyButton({ buttonText, image = null }: props) {
         mass: 5,
         scale: {
           type: "spring",
-          stiffness: 35,
+          stiffness: 25,
           damping: 3,
           mass: 0.2,
         },
