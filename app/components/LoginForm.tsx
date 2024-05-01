@@ -81,7 +81,7 @@ function LoginForm({ providers }: Props) {
           </button>
           <span
             ref={wrongCredentials}
-            className="text-red-500 w-full text-center mt-1 text-sm font-light"
+            className="text-red-500 w-full text-center mt-1 text-sm font-light hidden"
           >
             <strong>Error:</strong> wrong username or password
           </span>
