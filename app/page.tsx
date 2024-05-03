@@ -1,5 +1,9 @@
 import Image from "next/image";
 
 export default function Home() {
-  return <div>Hello WOrld</div>;
+  return (
+    <section className="relative">
+      <div>Hello WOrld</div>
+    </section>
+  );
 }
