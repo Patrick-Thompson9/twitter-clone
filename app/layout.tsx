@@ -22,7 +22,7 @@ export default function RootLayout({
       <body
         className={clsx(
           inter.className,
-          "bg-slate-900 text-white min-h-screen w-auto mt-20 md:mt-28 flex flex-col"
+          "bg-slate-900/0 text-white min-h-screen w-auto mt-20 md:mt-28 flex flex-col"
         )}
       >
         <Navbar />
