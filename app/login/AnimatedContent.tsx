@@ -6,6 +6,7 @@ import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
 function AnimatedContent() {
   const container = useRef(null);
+  const moonRef = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
   gsap.registerPlugin(useGSAP);
 
@@ -16,6 +17,7 @@ function AnimatedContent() {
       if (prefersReducedMotion) {
         gsap.set(container.current, { opacity: 1 });
         gsap.set(".star-grid-item", { opacity: 0.2, scale: 1 });
+        gsap.set(moonRef.current, { y: 0 });
         return;
       }
       gsap.set(".star-grid-item", {
@@ -27,41 +29,16 @@ function AnimatedContent() {
 
       const tl = gsap.timeline();
 
-      //entrance animation
-      //   tl.to(".star-grid-item", {
-      //     keyframes: [
-      //       { opacity: 0, duration: 0 },
-      //       {
-      //         opacity: 1,
-      //         rotate: "+=180",
-      //         color: "#fff",
+      //moon animation
+      tl.to(moonRef.current, {
+        y: "-91%",
+        duration: 5,
+        ease: "power3.out",
+      });
 
-      //         duration: 0.6,
-      //         stagger: {
-      //           amount: 2,
-      //           grid: grid,
-      //           from: "center",
-      //         },
-      //       },
-      //       {
-      //         opacity: 0,
-      //         rotate: "+=180",
-      //         color: "#fff",
-
-      //         delay: -1.7,
-      //         duration: 0.6,
-      //         stagger: {
-      //           amount: 3,
-      //           grid: grid,
-      //           from: "center",
-      //         },
-      //       },
-      //     ],
-      //   });
-
-      //loop animation
+      //loop star animation
       tl.to(".star-grid-item", {
-        delay: 0,
+        delay: -5,
         repeat: -1,
         repeatDelay: 8,
 
@@ -77,24 +54,11 @@ function AnimatedContent() {
             stagger: {
               repeat: -1,
               yoyo: true,
-              amount: 60,
+              amount: 40,
               grid: grid,
               from: "random",
             },
           },
-          //   {
-          //     opacity: 0.2,
-          //     rotate: "+=180",
-          //     color: "#fff",
-          //     delay: -29,
-          //     duration: 0.6,
-          //     scale: 1,
-          //     stagger: {
-          //       amount: 30,
-          //       grid: grid,
-          //       from: "random",
-          //     },
-          //   },
         ],
       });
     },
@@ -105,7 +69,8 @@ function AnimatedContent() {
     <>
       <img
         src="moon.svg"
-        className="moon absolute translate-y-[-90%] size-[200vw] object-cover object-center z-10"
+        ref={moonRef}
+        className="moon absolute translate-y-[-100%] size-[200vw] object-cover object-center z-10"
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
