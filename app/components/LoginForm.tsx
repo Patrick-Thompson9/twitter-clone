@@ -2,7 +2,8 @@
 import React, { useEffect } from "react";
 import ShinyButton from "./ShinyButton";
 import { signIn } from "next-auth/react";
-import { useRef } from "react";
+import { useState } from "react";
+import clsx from "clsx";
 
 type Provider = {
   name: string;
@@ -15,12 +16,10 @@ interface Props {
 }
 
 function LoginForm({ providers }: Props) {
-  const wrongCredentials = useRef<HTMLDivElement>(null);
+  const [invalidLogin, setInvalidLogin] = useState(false);
 
   useEffect(() => {
-    if (wrongCredentials.current) {
-      wrongCredentials.current.style.display = "none";
-    }
+    setInvalidLogin(false);
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,14 +35,10 @@ function LoginForm({ providers }: Props) {
       redirect: false,
     }).then((result) => {
       if (result?.error) {
-        if (wrongCredentials.current) {
-          wrongCredentials.current.style.display = "block";
-        }
+        setInvalidLogin(true);
         console.error(result.error);
       } else {
-        if (wrongCredentials.current) {
-          wrongCredentials.current.style.display = "none";
-        }
+        setInvalidLogin(false);
       }
     });
   };
@@ -60,7 +55,10 @@ function LoginForm({ providers }: Props) {
               type="text"
               id="username"
               name="username"
-              className="border-black bg-slate-600 border rounded-md my-1 w-full py-1 px-2 focus:outline-none focus:ring-0 focus:border-sky-200 focus:border focus:shadow focus:shadow-sky-200 relative z-10 peer"
+              className={clsx(
+                "border-black bg-slate-600 border rounded-md my-1 w-full py-1 px-2 focus:outline-none focus:ring-0 focus:border-sky-200 focus:border focus:shadow focus:shadow-sky-200 relative z-10 peer",
+                invalidLogin && "border-red-500/75 border shadow-none"
+              )}
             />
             <div className="absolute inset-2 opacity-0 bg-sky-200/50 blur-xl filter -z-0 peer-focus:opacity-100 transition-opacity duration-300" />
           </div>
@@ -72,18 +70,18 @@ function LoginForm({ providers }: Props) {
               type="password"
               id="password"
               name="password"
-              className="border-black bg-slate-600 border rounded-md my-1 w-full py-1 px-2 focus:outline-none focus:ring-0 focus:border-sky-200 focus:border focus:shadow focus:shadow-sky-200 relative z-10 peer"
+              className={clsx(
+                "border-black bg-slate-600 border rounded-md my-1 w-full py-1 px-2 focus:outline-none focus:ring-0 focus:border-sky-200 focus:border focus:shadow focus:shadow-sky-200 relative z-10 peer",
+                invalidLogin && "border-red-500/75 border shadow-none"
+              )}
             />
             <div className="absolute inset-2 opacity-0 bg-sky-200/50 blur-xl filter -z-0 peer-focus:opacity-100 transition-opacity duration-300" />
           </div>
           <button type="submit" className="mt-4 w-full">
             <ShinyButton buttonText="Login" />
           </button>
-          <span
-            ref={wrongCredentials}
-            className="text-red-500 w-full text-center mt-1 text-sm font-light hidden"
-          >
-            <strong>Error:</strong> wrong username or password
+          <span className="text-red-500 w-full text-center mt-1 text-sm font-light hidden">
+            <strong>Error:</strong> Invalid username or password
           </span>
 
           {/* "Or" separator */}
