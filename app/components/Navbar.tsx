@@ -3,7 +3,9 @@ import clsx from "clsx";
 import { useState } from "react";
 import { FaGear, FaX, FaHouseChimneyCrack, FaTree } from "react-icons/fa6";
 import { GiFox, GiStack } from "react-icons/gi";
+import { CiLogout } from "react-icons/ci";
 import SearchBar from "./SearchBar";
+import { signOut } from "next-auth/react";
 
 const NavLinks = [
   { title: "Home", path: "/", icon: <FaHouseChimneyCrack /> },
@@ -46,9 +48,9 @@ function Navbar() {
               >
                 {!isOpen ? <GiStack /> : <FaX />}
               </button>
-              <ul className="w-screen grid justify-items-start mt-2 ml-16 gap-8 divide-y divide-sky-200/70">
+              <ul className="w-screen grid justify-items-center mt-2 gap-8 divide-y divide-sky-200/70">
                 {NavLinks.map((link, index) => (
-                  <li key={link.title} className="h-10">
+                  <li key={index} className="h-10 w-[70%]">
                     <a
                       href={link.path}
                       className="flex items-center justify-center gap-2 pt-4 text-3xl"
@@ -59,6 +61,13 @@ function Navbar() {
                   </li>
                 ))}
               </ul>
+              <button
+                className="absolute bottom-0 my-4 flex justify-center items-center gap-1"
+                onClick={() => signOut()}
+              >
+                <CiLogout className="size-7" />
+                <div className="text-xl font-semibold">Sign out</div>
+              </button>
             </div>
           </div>
 
