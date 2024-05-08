@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import ShinyButton from "./ShinyButton";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
 import clsx from "clsx";
 
@@ -16,6 +16,9 @@ interface Props {
 }
 
 function LoginForm({ providers }: Props) {
+  // const { data, status } = useSession();
+  // console.log(data, status);
+
   const [invalidLogin, setInvalidLogin] = useState(false);
 
   useEffect(() => {

@@ -1,11 +1,15 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
 import AnimatedContent from "./AnimatedContent";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 async function page() {
   const res = await fetch("http://localhost:3000/api/auth/providers");
   const providers = await res.json();
   console.log(providers);
+
+  const session = await getServerSession(authOptions);
 
   return (
     <section className="flex flex-col place-items-center">
@@ -14,6 +18,16 @@ async function page() {
         Login
       </span>
       <LoginForm providers={providers} />
+      <div>
+        <h2>My Amazing App</h2>
+        {session && (
+          <div>
+            <p>Signed in as {session.user && session.user.name}</p>
+            <a href="/api/auth/signout">Sign out by link</a>
+          </div>
+        )}
+        {!session && <p>Not signed in</p>}
+      </div>
     </section>
   );
 }
