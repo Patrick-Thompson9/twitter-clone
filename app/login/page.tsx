@@ -7,9 +7,9 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 async function page() {
   const res = await fetch("http://localhost:3000/api/auth/providers");
   const providers = await res.json();
-  console.log(providers);
 
   const session = await getServerSession(authOptions);
+  console.log(session?.user.id);
 
   return (
     <section className="flex flex-col place-items-center">

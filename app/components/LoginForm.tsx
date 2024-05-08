@@ -114,6 +114,12 @@ function LoginForm({ providers }: Props) {
                 </button>
               )
             )}
+            <span className="mt-4">
+              Don't have an account?{" "}
+              <a className="text-blue-500 underline" href="/register">
+                Register now!
+              </a>
+            </span>
           </div>
         </div>
       </form>

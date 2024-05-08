@@ -1,12 +1,14 @@
-import NextAuth, { User } from "next-auth";
+import NextAuth, { NextAuthOptions, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "./lib/db";
 import { Adapter } from "next-auth/adapters";
+import { SessionStrategy, Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     Credentials({
       name: "Credentials",
@@ -67,9 +69,24 @@ export const authOptions = {
       clientSecret: process.env.GITHUB_SECRET ?? "",
     }),
   ],
+  session: {
+    strategy: "jwt" as const,
+  },
   adapter: MongoDBAdapter(clientPromise) as Adapter, // Use the MongoDB adapter
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,
+  },
+  pages: {
+    signIn: "/login",
+  },
+  callbacks: {
+    async session({ session, token }: { session: Session; token: JWT }) {
+      // Include the user's ID in the session object
+      if (session?.user && token?.sub) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
   },
 };
 
