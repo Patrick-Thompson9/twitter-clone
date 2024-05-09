@@ -21,11 +21,9 @@ function LoginForm({ providers }: Props) {
 
   const router = useRouter();
   const { data, status } = useSession();
-  console.log(data, status);
+
   if (data) {
     router.push("/");
-    console.log("HELOOOOO");
-    console.log(data);
   }
 
   useEffect(() => {

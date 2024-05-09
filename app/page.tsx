@@ -3,11 +3,11 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { data, status } = useSession();
+  const { data: session, status } = useSession();
 
   const getUserInfo = async () => {
-    if (status === "loading" || !data) return;
-    fetch("/api/users?id=" + data.user.id);
+    if (status === "loading" || !session) return;
+    fetch("/api/users?id=" + session.user.id);
   };
 
   useEffect(() => {
