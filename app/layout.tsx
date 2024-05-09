@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import clsx from "clsx";
+import { NextAuthProvider } from "./components/NextAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,17 +19,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={clsx(
-          inter.className,
-          "bg-slate-900/0 text-white min-h-screen w-auto mt-20 md:mt-28 flex flex-col"
-        )}
-      >
-        <Navbar />
-        <div className="flex-grow">{children}</div>
-        <Footer />
-      </body>
-    </html>
+    <NextAuthProvider>
+      <html lang="en">
+        <body
+          className={clsx(
+            inter.className,
+            "bg-slate-900/0 text-white min-h-screen w-auto mt-20 md:mt-28 flex flex-col"
+          )}
+        >
+          <Navbar />
+          <div className="flex-grow">{children}</div>
+          <Footer />
+        </body>
+      </html>
+    </NextAuthProvider>
   );
 }

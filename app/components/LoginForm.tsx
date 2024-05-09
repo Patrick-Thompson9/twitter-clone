@@ -4,6 +4,7 @@ import ShinyButton from "./ShinyButton";
 import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 
 type Provider = {
   name: string;
@@ -16,10 +17,16 @@ interface Props {
 }
 
 function LoginForm({ providers }: Props) {
-  // const { data, status } = useSession();
-  // console.log(data, status);
-
   const [invalidLogin, setInvalidLogin] = useState(false);
+
+  const router = useRouter();
+  const { data, status } = useSession();
+  console.log(data, status);
+  if (data) {
+    router.push("/");
+    console.log("HELOOOOO");
+    console.log(data);
+  }
 
   useEffect(() => {
     setInvalidLogin(false);
