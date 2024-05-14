@@ -2,22 +2,12 @@
 import useUserInfo from "@/hooks/useUserInfo";
 import UsernameForm from "./components/UsernameForm";
 import ShinyButton from "./components/ShinyButton";
-import ClipLoader from "react-spinners/ClipLoader";
+import Spinner from "./components/Spinner";
 
 export default function Home() {
   const { userInfo, userInfoStatus } = useUserInfo();
 
-  if (userInfoStatus === "loading")
-    return (
-      <section className="flex w-screen h-screen place-items-center justify-center">
-        <ClipLoader
-          color={"#bae6fd"}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      </section>
-    );
+  if (userInfoStatus === "loading") return <Spinner />;
 
   if (userInfo && !userInfo.username) {
     console.log(userInfo);
