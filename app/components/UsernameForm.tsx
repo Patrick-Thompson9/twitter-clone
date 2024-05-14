@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import ShinyButton from "./ShinyButton";
 import { useState } from "react";
 import useUserInfo from "@/hooks/useUserInfo";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 function UsernameForm() {
   const { userInfo, userInfoStatus } = useUserInfo();
@@ -34,7 +34,7 @@ function UsernameForm() {
       body: JSON.stringify({ username: usernameInput.value }),
     });
     setUsername(usernameInput.value);
-    router.reload();
+    router.refresh();
   };
 
   if (userInfoStatus === "loading") return <div>Loading...</div>;
