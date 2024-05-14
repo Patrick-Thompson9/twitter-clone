@@ -22,6 +22,8 @@ function LoginForm({ providers }: Props) {
   const router = useRouter();
   const { data, status } = useSession();
 
+  if (status === "loading") return <div>Loading...</div>;
+
   if (data) {
     router.push("/");
   }
