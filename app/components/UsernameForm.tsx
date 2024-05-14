@@ -4,10 +4,12 @@ import React, { useEffect } from "react";
 import ShinyButton from "./ShinyButton";
 import { useState } from "react";
 import useUserInfo from "@/hooks/useUserInfo";
+import { useRouter } from "next/router";
 
 function UsernameForm() {
   const { userInfo, userInfoStatus } = useUserInfo();
   const [username, setUsername] = useState<string>("");
+  const router = useRouter();
 
   useEffect(() => {
     if (userInfoStatus === "loading" || !userInfo) {
@@ -19,19 +21,20 @@ function UsernameForm() {
     }
   }, [userInfoStatus]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const usernameInput = form.elements.namedItem(
       "username"
     ) as HTMLInputElement;
 
-    fetch("/api/users", {
+    await fetch("/api/users", {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ username: usernameInput.value }),
     });
     setUsername(usernameInput.value);
+    router.reload();
   };
 
   if (userInfoStatus === "loading") return <div>Loading...</div>;

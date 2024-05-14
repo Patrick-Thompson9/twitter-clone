@@ -22,15 +22,15 @@ function LoginForm({ providers }: Props) {
   const router = useRouter();
   const { data, status } = useSession();
 
+  useEffect(() => {
+    setInvalidLogin(false);
+  }, []);
+
   if (status === "loading") return <div>Loading...</div>;
 
   if (data) {
     router.push("/");
   }
-
-  useEffect(() => {
-    setInvalidLogin(false);
-  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
