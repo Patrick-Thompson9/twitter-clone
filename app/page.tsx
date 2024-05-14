@@ -1,7 +1,4 @@
 "use client";
-import UserInfo from "@/types/user";
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
 import useUserInfo from "@/hooks/useUserInfo";
 import UsernameForm from "./components/UsernameForm";
 
