@@ -1,16 +1,25 @@
 "use client";
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect } from "react";
 import ShinyButton from "./ShinyButton";
 import { useState } from "react";
 import useUserInfo from "@/hooks/useUserInfo";
 
 function UsernameForm() {
   const { userInfo, userInfoStatus } = useUserInfo();
-  const defaultUsername = userInfo?.email.split("@")[0] || "";
+  const [username, setUsername] = useState<string>("");
+
+  useEffect(() => {
+    if (userInfoStatus === "loading" || !userInfo) {
+      return;
+    }
+    if (username === "") {
+      const defaultUsername = userInfo?.email.split("@")[0] || "";
+      setUsername(defaultUsername.replace(/[^a-z]+/gi, ""));
+    }
+  }, [userInfoStatus]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const [username, setUsername] = useState<string>("");
     e.preventDefault();
   };
 
@@ -33,7 +42,7 @@ function UsernameForm() {
                 id="username"
                 name="username"
                 placeholder="JohnDoe123"
-                defaultValue={defaultUsername}
+                defaultValue={username}
                 className="border-black bg-slate-600 border rounded-md my-1 w-full py-1 px-2 focus:outline-none focus:ring-0 focus:border-sky-200 focus:border focus:shadow focus:shadow-sky-200 relative z-10 peer"
               />
               <div className="absolute inset-2 opacity-0 bg-sky-200/50 blur-xl filter -z-0 peer-focus:opacity-100 transition-opacity duration-300" />

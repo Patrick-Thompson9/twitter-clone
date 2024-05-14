@@ -11,7 +11,6 @@ export default function useUserInfo() {
     if (sessionStatus === "loading" || !session) {
       return;
     }
-    console.log(session.user.id);
     fetch("/api/users?id=" + session.user.id)
       .then((res) => res.json())
       .then((json) => {
