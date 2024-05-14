@@ -8,3 +8,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const user = await User.findById(id);
   return NextResponse.json(user);
 }
+
+export async function PUT(req: NextRequest, res: NextResponse) {
+  return NextResponse.json("Okie Dokie :)");
+}
