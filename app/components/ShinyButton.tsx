@@ -16,7 +16,7 @@ function ShinyButton({ buttonText, image = null, classes = null }: props) {
   return (
     <motion.div
       className={clsx(
-        "relative w-full py-2 px-4 bg-white rounded-md transition-colors duration-1000",
+        "relative w-full py-2 px-4 bg-white rounded-md transition-colors duration-1000 focus:outline-none focus:ring-0 focus:border-sky-200 focus:border focus:shadow-md focus:shadow-sky-200/50",
         radialGradientClasses,
         classes
       )}
