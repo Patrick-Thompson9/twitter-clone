@@ -1,19 +1,25 @@
 "use client";
 import { motion } from "framer-motion";
+import clsx from "clsx";
 
 interface props {
   buttonText: string;
   image?: string | null;
+  classes?: string | null;
 }
 
-function ShinyButton({ buttonText, image = null }: props) {
+function ShinyButton({ buttonText, image = null, classes = null }: props) {
   const radialGradientClasses = "button-radial-gradient";
   const linearOverlayClasses = "p-px linear-overlay";
   const textClasses = "text-white";
 
   return (
     <motion.div
-      className={`relative w-full py-2 px-4 bg-white rounded-md transition-colors duration-1000 ${radialGradientClasses}`}
+      className={clsx(
+        "relative w-full py-2 px-4 bg-white rounded-md transition-colors duration-1000",
+        radialGradientClasses,
+        classes
+      )}
       initial={{ "--x": "100%" }}
       animate={{ "--x": "-75%" }}
       whileTap={{ scale: 0.95 }}
@@ -37,13 +43,19 @@ function ShinyButton({ buttonText, image = null }: props) {
       <div className="flex items-center justify-center">
         {image && <img src={image} alt="logo" className="size-8" />}
         <span
-          className={`${textClasses} tracking-wide font-light text-lg size-full block relative linear-mask transition-colors duration-1000`}
+          className={clsx(
+            textClasses,
+            "tracking-wide font-light text-lg size-full block relative linear-mask transition-colors duration-1000"
+          )}
         >
           {buttonText}
         </span>
       </div>
       <span
-        className={`block absolute inset-0 rounded-md ${linearOverlayClasses}`}
+        className={clsx(
+          "block absolute inset-0 rounded-md",
+          linearOverlayClasses
+        )}
       ></span>
     </motion.div>
   );
