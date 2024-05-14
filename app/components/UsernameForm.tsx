@@ -21,11 +21,17 @@ function UsernameForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const usernameInput = form.elements.namedItem(
+      "username"
+    ) as HTMLInputElement;
+
     fetch("/api/users", {
       method: "PUT",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ username }),
+      body: JSON.stringify({ username: usernameInput.value }),
     });
+    setUsername(usernameInput.value);
   };
 
   if (userInfoStatus === "loading") return <div>Loading...</div>;
