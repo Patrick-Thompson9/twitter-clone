@@ -5,6 +5,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
+import Spinner from "./Spinner";
 
 type Provider = {
   name: string;
@@ -26,7 +27,7 @@ function LoginForm({ providers }: Props) {
     setInvalidLogin(false);
   }, []);
 
-  if (status === "loading") return <div>Loading...</div>;
+  if (status === "loading") return <Spinner />;
 
   if (data) {
     router.push("/");
