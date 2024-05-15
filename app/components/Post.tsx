@@ -44,7 +44,13 @@ function Post({ userInfo }: props) {
         {/* post widgets */}
         <div className="flex gap-3 mt-2 justify-start items-center">
           {widgets.map((widget, index) => (
-            <span className="text-xl">{widget.icon}</span>
+            <span
+              key={index}
+              className="text-xl hover:cursor-pointer"
+              aria-description={widget.name}
+            >
+              {widget.icon}
+            </span>
           ))}
         </div>
       </div>
