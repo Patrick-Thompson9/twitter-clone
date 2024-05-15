@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { initMongoose } from "../auth/[...nextauth]/lib/mongoose";
 import User from "../../models/User";
-import { getServerSession, unstable_getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET(req: NextRequest, res: NextResponse) {
