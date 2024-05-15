@@ -11,8 +11,8 @@ TimeAgo.addLocale(en);
 
 const widgets = [
   { name: "heart", icon: <FaHeart /> },
-  { name: "share", icon: <FaPaperPlane /> },
   { name: "comment", icon: <SlSpeech /> },
+  { name: "share", icon: <FaPaperPlane /> },
 ];
 
 interface props {
@@ -23,13 +23,13 @@ function Post({ postData }: props) {
   return (
     <div className="flex flex-col justify-start place-items-center relative my-3 w-full">
       {/* post card */}
-      <div className="flex flex-col justify-start relative bg-slate-950 border-sky-200/75 border p-14 rounded-lg py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5 hover:shadow-xl hover:shadow-sky-200/15 transition-shadow duration-300">
+      <div className="flex flex-col justify-start relative bg-slate-950 border-sky-200/75 border p-14 rounded-lg py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5 hover:shadow-xl hover:shadow-sky-200/20 transition-shadow duration-300">
         {/* post header */}
         <div className="flex justify-start gap-2 items-center mb-2">
           {postData.author.image ? (
             <img
               src={postData.author.image}
-              className="size-10 rounded-full border border-sky-200"
+              className="size-12 rounded-full border border-sky-200"
               alt="avatar"
             />
           ) : (
