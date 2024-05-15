@@ -4,6 +4,11 @@ import Post from "../../models/Post";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
+export async function GET(req: NextRequest, res: NextResponse) {
+  const posts = await Post.find().exec();
+  return NextResponse.json(posts);
+}
+
 export async function POST(req: NextRequest, res: NextResponse) {
   const session = await getServerSession(authOptions);
   const data = await req.json();

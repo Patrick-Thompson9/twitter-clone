@@ -3,6 +3,7 @@ import React from "react";
 import { GiWolfHowl } from "react-icons/gi";
 import { FaHeart, FaPaperPlane } from "react-icons/fa6";
 import { SlSpeech } from "react-icons/sl";
+import PostData from "@/types/post";
 
 const widgets = [
   { name: "heart", icon: <FaHeart /> },
@@ -12,9 +13,10 @@ const widgets = [
 
 interface props {
   userInfo: UserInfo | undefined;
+  postData: PostData;
 }
 
-function Post({ userInfo }: props) {
+function Post({ userInfo, postData }: props) {
   if (!userInfo) return null;
 
   return (
@@ -38,7 +40,7 @@ function Post({ userInfo }: props) {
         {/* post body */}
         <div className="border border-sky-200/25 w-full min-h-20 rounded-sm py-1 px-2">
           {/* post text */}
-          Example text homies
+          {postData.text}
         </div>
 
         {/* post widgets */}
