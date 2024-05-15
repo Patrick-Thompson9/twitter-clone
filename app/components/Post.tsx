@@ -18,9 +18,9 @@ function Post({ userInfo }: props) {
   if (!userInfo) return null;
 
   return (
-    <div className="flex flex-col justify-start place-items-center relative p-10 w-full">
+    <div className="flex flex-col justify-start place-items-center relative my-3 w-full">
       {/* post card */}
-      <div className="flex flex-col justify-start relative bg-slate-950 border-sky-200/75 border p-14 focus-within:border-sky-200 shadow-xl shadow-sky-200/15 rounded-lg py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5">
+      <div className="flex flex-col justify-start relative bg-slate-950 border-sky-200/75 border p-14 rounded-lg py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5 hover:shadow-xl hover:shadow-sky-200/15 transition-shadow duration-300">
         {/* post header */}
         <div className="flex justify-start gap-2 items-center mb-2">
           {userInfo.image ? (

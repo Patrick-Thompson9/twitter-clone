@@ -17,7 +17,10 @@ export default function Home() {
   return (
     <section className="flex flex-col place-items-center justify-center w-full">
       <PostForm userInfo={userInfo} />
-      <div className="flex">all posts</div>
+      <div className="flex mt-2 text-3xl font-medium">All Posts</div>
+      <Post userInfo={userInfo} />
+      <Post userInfo={userInfo} />
+      <Post userInfo={userInfo} />
       <Post userInfo={userInfo} />
     </section>
   );
