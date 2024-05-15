@@ -4,16 +4,17 @@ import { GiWolfHowl } from "react-icons/gi";
 import ShinyButton from "./ShinyButton";
 import UserInfo from "@/types/user";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface props {
   userInfo: UserInfo | undefined;
 }
 
 function PostForm({ userInfo }: props) {
+  const router = useRouter();
   const [text, setText] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     const json = await axios.post("/api/posts", { text });
   };
 
