@@ -18,7 +18,7 @@ function PostForm({ userInfo }: props) {
   };
 
   return (
-    <div className="flex flex-col rounded-sm relative border-sky-200/75 border p-14 focus-within:border-sky-200 focus ">
+    <div className="flex flex-col rounded-sm relative border-sky-200/75 border p-14 focus-within:border-sky-200 w-full">
       <div className="flex justify-start gap-2 items-center mb-2">
         {userInfo?.image ? (
           <img
