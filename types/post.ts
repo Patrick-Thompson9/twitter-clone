@@ -1,5 +1,7 @@
+import User from "./user";
+
 type PostData = {
-  author: string;
+  author: User;
   text: string;
 };
 

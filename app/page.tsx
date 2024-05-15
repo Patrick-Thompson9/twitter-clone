@@ -11,7 +11,6 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
     const posts = await axios.get("/api/posts").then((res) => {
-      console.log(res);
       setPosts(res.data);
     });
 
