@@ -3,6 +3,11 @@ import { GiWolfHowl } from "react-icons/gi";
 import { FaHeart, FaPaperPlane } from "react-icons/fa6";
 import { SlSpeech } from "react-icons/sl";
 import PostData from "@/types/post";
+import ReactTimeAgo from "react-time-ago";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
+
+TimeAgo.addLocale(en);
 
 const widgets = [
   { name: "heart", icon: <FaHeart /> },
@@ -24,13 +29,23 @@ function Post({ postData }: props) {
           {postData.author.image ? (
             <img
               src={postData.author.image}
-              className="size-6 rounded-full border border-sky-200"
+              className="size-10 rounded-full border border-sky-200"
               alt="avatar"
             />
           ) : (
-            <GiWolfHowl className="size-10 rounded-full border border-sky-200" />
+            <GiWolfHowl className="size-14 rounded-full border border-sky-200" />
           )}
-          <span className="text-xl">{postData.author.username}</span>
+          <div className="flex justify-between items-start w-full">
+            <div className="flex flex-col justify-start">
+              <span className="text-xl">{postData.author.name}</span>
+              <span className="text-sky-200/50">
+                {postData.author.username}
+              </span>
+            </div>
+            <span className="text-sky-200/50">
+              <ReactTimeAgo date={postData.createdAt} />
+            </span>
+          </div>
         </div>
 
         {/* post body */}
