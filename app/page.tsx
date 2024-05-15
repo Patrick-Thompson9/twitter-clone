@@ -38,13 +38,9 @@ export default function Home() {
         <div className="text-xl">No posts yet</div>
       ) : (
         posts.map((post, index) => {
-          return <Post key={index} userInfo={userInfo} postData={post} />;
+          return <Post key={index} postData={post} />;
         })
       )}
-      {/* <Post userInfo={userInfo} />
-      <Post userInfo={userInfo} />
-      <Post userInfo={userInfo} />
-      <Post userInfo={userInfo} /> */}
     </section>
   );
 }

@@ -1,9 +1,11 @@
+"use client";
 import UserInfo from "@/types/user";
-import React from "react";
+import { useEffect, useState } from "react";
 import { GiWolfHowl } from "react-icons/gi";
 import { FaHeart, FaPaperPlane } from "react-icons/fa6";
 import { SlSpeech } from "react-icons/sl";
 import PostData from "@/types/post";
+import axios from "axios";
 
 const widgets = [
   { name: "heart", icon: <FaHeart /> },
@@ -12,11 +14,23 @@ const widgets = [
 ];
 
 interface props {
-  userInfo: UserInfo | undefined;
   postData: PostData;
 }
 
-function Post({ userInfo, postData }: props) {
+function Post({ postData }: props) {
+  if (!postData) return null;
+  const [userInfo, setUserInfo] = useState<UserInfo>();
+  const getUserInfo = async (authorID: string) => {
+    await axios
+      .get("/api/users?id=" + postData.author)
+      .then((res) => setUserInfo(res.data));
+    console.log(userInfo);
+  };
+
+  useEffect(() => {
+    getUserInfo(postData.author);
+  }, []);
+
   if (!userInfo) return null;
 
   return (
