@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 export default function useUserInfo() {
   const { data: session, status: sessionStatus } = useSession();
   const [userInfo, setUserInfo] = useState<UserInfo>();
-  const [userInfoStatus, setUserInfoStatus] = useState("null");
+  const [userInfoStatus, setUserInfoStatus] = useState("loading");
 
   const getUserInfo = () => {
     setUserInfoStatus("loading");
