@@ -1,6 +1,4 @@
 import mongoose, { model, models } from "mongoose";
-import { imageConfigDefault } from "next/dist/shared/lib/image-config";
-import { emit } from "process";
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({

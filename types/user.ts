@@ -3,6 +3,7 @@ type UserInfo = {
   email: string;
   password: string;
   id: string;
+  image: string;
 };
 
 export default UserInfo;
