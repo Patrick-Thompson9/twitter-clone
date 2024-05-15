@@ -14,7 +14,6 @@ function PostForm({ userInfo }: props) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(text);
     const json = await axios.post("/api/posts", { text });
   };
 
