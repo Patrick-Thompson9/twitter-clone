@@ -5,7 +5,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function POST(req: NextRequest, res: NextResponse) {
-  await initMongoose();
   const session = await getServerSession(authOptions);
   const data = await req.json();
   const text = data.text;
