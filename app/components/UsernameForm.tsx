@@ -1,10 +1,10 @@
 "use client";
-import clsx from "clsx";
 import React, { useEffect } from "react";
 import ShinyButton from "./ShinyButton";
 import { useState } from "react";
 import useUserInfo from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
+import Spinner from "./Spinner";
 
 function UsernameForm() {
   const { userInfo, userInfoStatus } = useUserInfo();
@@ -37,7 +37,7 @@ function UsernameForm() {
     router.refresh();
   };
 
-  if (userInfoStatus === "loading") return <div>Loading...</div>;
+  if (userInfoStatus === "loading") return <Spinner />;
 
   return (
     <div className="flex flex-col place-items-center">
