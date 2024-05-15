@@ -8,18 +8,22 @@ import { useRouter } from "next/navigation";
 
 interface props {
   userInfo: UserInfo | undefined;
+  onPost: () => void;
 }
 
-function PostForm({ userInfo }: props) {
+function PostForm({ userInfo, onPost }: props) {
   const router = useRouter();
   const [text, setText] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (userInfo === undefined) {
       router.push("/login");
       return;
     }
     const json = await axios.post("/api/posts", { text });
+    setText("");
+    if (onPost) onPost();
   };
 
   return (

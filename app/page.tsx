@@ -32,7 +32,12 @@ export default function Home() {
 
   return (
     <section className="flex flex-col place-items-center justify-center w-full">
-      <PostForm userInfo={userInfo} />
+      <PostForm
+        userInfo={userInfo}
+        onPost={() => {
+          fetchPosts();
+        }}
+      />
       <div className="flex mt-2 text-3xl font-medium">All Posts</div>
       {posts.length === 0 ? (
         <div className="text-xl">No posts yet</div>
