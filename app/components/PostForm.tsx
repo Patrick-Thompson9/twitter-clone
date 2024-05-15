@@ -15,6 +15,10 @@ function PostForm({ userInfo }: props) {
   const [text, setText] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    if (userInfo === undefined) {
+      router.push("/login");
+      return;
+    }
     const json = await axios.post("/api/posts", { text });
   };
 
