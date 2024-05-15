@@ -12,7 +12,7 @@ export default function Home() {
   const fetchPosts = async () => {
     const posts = await axios.get("/api/posts").then((res) => {
       console.log(res);
-      setPosts(res.data.reverse());
+      setPosts(res.data);
     });
 
     return posts;

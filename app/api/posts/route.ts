@@ -1,11 +1,10 @@
 import { NextResponse, NextRequest } from "next/server";
-import { initMongoose } from "../auth/[...nextauth]/lib/mongoose";
 import Post from "../../models/Post";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  const posts = await Post.find().exec();
+  const posts = await Post.find().sort({ createdAt: -1 }).exec();
   return NextResponse.json(posts);
 }
 
