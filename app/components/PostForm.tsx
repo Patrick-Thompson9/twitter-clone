@@ -33,6 +33,7 @@ function PostForm({ userInfo, onPost }: props) {
           <img
             src={userInfo?.image}
             className="size-10 rounded-full border border-sky-200"
+            referrerPolicy="no-referrer"
             alt="avatar"
           />
         ) : (
