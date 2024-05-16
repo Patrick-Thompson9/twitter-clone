@@ -27,7 +27,7 @@ function Post({ postData }: props) {
       {/* post card */}
       <div className="flex flex-col justify-start relative bg-slate-950 border-sky-200/75 border p-14 rounded-lg py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5 hover:shadow-xl hover:shadow-sky-200/20 transition-shadow duration-300">
         {/* post header */}
-        <Link href={"/user?id=" + postData.author.id}>
+        <Link href={"/user?id=" + postData.author._id}>
           <div className="flex justify-start gap-2 items-center mb-2">
             {postData.author.image ? (
               <img
