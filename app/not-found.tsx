@@ -10,7 +10,7 @@ function NotFoundPage() {
           <span>Page does not exist</span>
         </div>
         <img
-          src={"confused.gif"}
+          src={"/confused.gif"}
           alt="confused gif"
           className="static left-0"
         />
