@@ -4,6 +4,12 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET(req: NextRequest, res: NextResponse) {
+  const id = req.nextUrl.searchParams.get("id");
+  if (id) {
+    const post = await Post.findById(id).populate("author");
+    return NextResponse.json(post);
+  }
+
   const posts = await Post.find()
     .populate("author")
     .sort({ createdAt: -1 })
