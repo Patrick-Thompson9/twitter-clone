@@ -22,7 +22,7 @@ interface props {
 }
 
 function Post({ postData }: props) {
-  console.log("PostData", postData);
+  if (!postData) return <div>Post not found :/</div>;
   return (
     <div className="flex flex-col justify-center mt-3 card-size">
       {/* post card */}
