@@ -1,6 +1,7 @@
 import UserInfo from "@/types/user";
 import React from "react";
 import UserHeader from "./UserHeader";
+import TimeAgo from "javascript-time-ago";
 
 interface props {
   User: UserInfo;
@@ -8,9 +9,10 @@ interface props {
 
 function Comment({ User }: props) {
   return (
-    <div className="card-size px-4 py-2 rounded-lg bg-slate-900 border-x border-t border-t-sky-200/25 border-x-sky-200/75">
+    <div className="px-4 py-2 bg-slate-900">
       <UserHeader User={User} />
-      Comment
+      <div className="p-2">Comment</div>
+      {/* <TimeAgo date={} /> */}
     </div>
   );
 }

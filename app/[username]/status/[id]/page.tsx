@@ -6,6 +6,7 @@ import Post from "@/app/components/Post";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Link from "next/link";
 import Comment from "@/app/components/Comment";
+import CommentSection from "@/app/components/CommentSection";
 
 function page({ params }: { params: { username: string; id: string } }) {
   const [post, setPost] = useState<PostData>();
@@ -36,13 +37,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       <div>{post && <Post postData={post} />}</div>
 
       {/* Comment Section */}
-      <span className="text-xl font-medium my-4">Comments</span>
-      <div className="">{post?.author && <Comment User={post.author} />}</div>
-      <div className="">{post?.author && <Comment User={post.author} />}</div>
-      <div className="">{post?.author && <Comment User={post.author} />}</div>
-      <div className="">{post?.author && <Comment User={post.author} />}</div>
-      <div className="">{post?.author && <Comment User={post.author} />}</div>
-      <div className="">{post?.author && <Comment User={post.author} />}</div>
+      {post?.author && <CommentSection User={post.author} />}
     </section>
   );
 }
