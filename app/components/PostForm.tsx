@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { GiWolfHowl } from "react-icons/gi";
+import { BsArrowReturnRight } from "react-icons/bs";
 import ShinyButton from "./ShinyButton";
 import UserInfo from "@/types/user";
 import axios from "axios";
@@ -9,9 +10,14 @@ import { useRouter } from "next/navigation";
 interface props {
   userInfo: UserInfo | undefined;
   onPost: () => void;
+  defaultText?: "What's on your mind?" | "Reply";
 }
 
-function PostForm({ userInfo, onPost }: props) {
+function PostForm({
+  userInfo,
+  onPost,
+  defaultText = "What's on your mind?",
+}: props) {
   const router = useRouter();
   const [text, setText] = useState("");
 
@@ -29,6 +35,7 @@ function PostForm({ userInfo, onPost }: props) {
   return (
     <div className="flex flex-col rounded-sm relative border-sky-200/75 border p-14 focus-within:border-sky-200 w-full">
       <div className="flex justify-start gap-2 items-center mb-2">
+        {defaultText === "Reply" && <BsArrowReturnRight className="size-6" />}
         {userInfo?.image ? (
           <img
             src={userInfo?.image}
@@ -39,7 +46,7 @@ function PostForm({ userInfo, onPost }: props) {
         ) : (
           <GiWolfHowl className="size-10 rounded-full border border-sky-200" />
         )}
-        <span className="font-bold text-xl">What's on your mind?</span>
+        <span className="font-bold text-xl">{defaultText}</span>
       </div>
       <form className="focus:border-red-500 focus:" onSubmit={handleSubmit}>
         <textarea

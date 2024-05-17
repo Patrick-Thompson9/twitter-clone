@@ -5,10 +5,12 @@ import axios from "axios";
 import Post from "@/app/components/Post";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Link from "next/link";
-import Comment from "@/app/components/Comment";
 import CommentSection from "@/app/components/CommentSection";
+import PostForm from "@/app/components/PostForm";
+import useUserInfo from "@/hooks/useUserInfo";
 
 function page({ params }: { params: { username: string; id: string } }) {
+  const { userInfo, userInfoStatus } = useUserInfo();
   const [post, setPost] = useState<PostData>();
 
   const fetchPost = async () => {
@@ -35,6 +37,22 @@ function page({ params }: { params: { username: string; id: string } }) {
         <span>Back</span>
       </Link>
       <div>{post && <Post postData={post} />}</div>
+
+      {/* post stats */}
+      <div className="flex justify-between card-size px-4 py-2 items-center">
+        <span className="">Likes: 0</span>
+        <span className="">Comments: 0</span>
+        <span className="">Shares: 0</span>
+      </div>
+
+      {/* reply option */}
+      <PostForm
+        userInfo={userInfo}
+        onPost={() => {
+          return;
+        }}
+        defaultText="Reply"
+      />
 
       {/* Comment Section */}
       {post?.author && <CommentSection User={post.author} />}
