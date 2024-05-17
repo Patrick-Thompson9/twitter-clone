@@ -1,4 +1,5 @@
 "use client";
+import PostData from "@/types/post";
 import axios from "axios";
 import clsx from "clsx";
 import { useState } from "react";
@@ -6,48 +7,45 @@ import { FaHeart, FaPaperPlane } from "react-icons/fa6";
 import { SlSpeech } from "react-icons/sl";
 
 interface Props {
-  id: string;
-  liked?: boolean;
+  postData: PostData;
   offCard?: boolean;
 }
 
-function Widgets({ id, liked = false, offCard = false }: Props) {
-  const [likes, setLikes] = useState(0);
-  const [comments, setComments] = useState(0);
-  const [shares, setShares] = useState(0);
-
+function Widgets({ postData, offCard = false }: Props) {
+  const [likedByMe, setLikedByMe] = useState(false);
   const handleLike = async () => {
-    const res = await axios.post("/api/like", { id });
+    const res = await axios.post("/api/like", { id: postData._id });
+    if (res.data) {
+      setLikedByMe(true);
+    } else {
+      setLikedByMe(false);
+    }
   };
 
-  const handleComment = () => {
-    setComments(comments + 1);
-  };
+  const handleComment = () => {};
 
-  const handleShare = () => {
-    setShares(shares + 1);
-  };
+  const handleShare = () => {};
 
   const widgets = [
     {
       name: "heart",
       icon: <FaHeart />,
-      color: "hover:text-red-400",
-      state: likes,
+      color: "hover:text-red-300",
+      state: postData.likeCount,
       onClick: handleLike,
     },
     {
       name: "comment",
       icon: <SlSpeech />,
       color: "hover:text-sky-200",
-      state: comments,
+      state: postData.commentCount,
       onClick: handleComment,
     },
     {
       name: "share",
       icon: <FaPaperPlane />,
       color: "hover:text-emerald-200",
-      state: shares,
+      state: postData.shareCount,
       onClick: handleShare,
     },
   ];
@@ -82,7 +80,7 @@ function Widgets({ id, liked = false, offCard = false }: Props) {
           className={clsx(
             "text-xl hover:cursor-pointer",
             widget.color,
-            widget.name === "heart" && liked && "text-red-400"
+            widget.name === "heart" && likedByMe && "text-red-400"
           )}
           onClick={widget.onClick}
           aria-description={widget.name}
