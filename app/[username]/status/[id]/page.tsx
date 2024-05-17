@@ -57,7 +57,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       />
 
       {/* Comment Section */}
-      {post?.author && <CommentSection User={post.author} />}
+      {post?.author && <CommentSection postData={post} />}
     </section>
   );
 }
