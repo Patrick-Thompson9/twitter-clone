@@ -1,21 +1,23 @@
 "use client";
+import axios from "axios";
 import clsx from "clsx";
 import { useState } from "react";
 import { FaHeart, FaPaperPlane } from "react-icons/fa6";
 import { SlSpeech } from "react-icons/sl";
 
 interface Props {
+  id: string;
   liked?: boolean;
   offCard?: boolean;
 }
 
-function Widgets({ liked = false, offCard = false }: Props) {
+function Widgets({ id, liked = false, offCard = false }: Props) {
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState(0);
   const [shares, setShares] = useState(0);
 
-  const handleLike = () => {
-    setLikes(likes + 1);
+  const handleLike = async () => {
+    const res = await axios.post("/api/like", { id });
   };
 
   const handleComment = () => {

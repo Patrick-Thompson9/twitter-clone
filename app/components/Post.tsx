@@ -31,7 +31,7 @@ function Post({ postData }: props) {
 
           {/* post widgets */}
           <div className="flex flex-col gap-4">
-            <Widgets />
+            <Widgets id={postData._id} />
             <span className="text-sky-200/50">
               <ReactTimeAgo date={postData.createdAt} />
             </span>
