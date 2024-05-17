@@ -8,6 +8,7 @@ import Link from "next/link";
 import CommentSection from "@/app/components/CommentSection";
 import PostForm from "@/app/components/PostForm";
 import useUserInfo from "@/hooks/useUserInfo";
+import Widgets from "@/app/components/Widgets";
 
 function page({ params }: { params: { username: string; id: string } }) {
   const { userInfo, userInfoStatus } = useUserInfo();
@@ -39,12 +40,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       <div>{post && <Post postData={post} />}</div>
 
       {/* post stats */}
-      {/* TODO: Make actual stats come up */}
-      <div className="flex justify-between card-size px-4 py-2 items-center">
-        <span className="hover:text-red-400">Likes: 0</span>
-        <span className="hover:text-sky-200">Comments: 0</span>
-        <span className="hover:text-emerald-200">Shares: 0</span>
-      </div>
+      <Widgets offCard />
 
       {/* reply option */}
       {/* TODO: Make post form actually make comment */}

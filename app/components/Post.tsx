@@ -1,22 +1,13 @@
 "use client";
-import { GiWolfHowl } from "react-icons/gi";
-import { FaHeart, FaPaperPlane } from "react-icons/fa6";
-import { SlSpeech } from "react-icons/sl";
 import PostData from "@/types/post";
 import ReactTimeAgo from "react-time-ago";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import Link from "next/link";
 import UserHeader from "./UserHeader";
-import clsx from "clsx";
+import Widgets from "./Widgets";
 
 TimeAgo.addLocale(en);
-
-const widgets = [
-  { name: "heart", icon: <FaHeart />, color: "hover:text-red-400" },
-  { name: "comment", icon: <SlSpeech />, color: "hover:text-sky-200" },
-  { name: "share", icon: <FaPaperPlane />, color: "hover:text-emerald-200" },
-];
 
 interface props {
   postData: PostData;
@@ -45,18 +36,7 @@ function Post({ postData }: props) {
           </div>
 
           {/* post widgets */}
-          {/* TODO Make widgets work */}
-          <div className="flex gap-3 mt-2 justify-start items-center">
-            {widgets.map((widget, index) => (
-              <button
-                key={index}
-                className={clsx("text-xl hover:cursor-pointer", widget.color)}
-                aria-description={widget.name}
-              >
-                {widget.icon}
-              </button>
-            ))}
-          </div>
+          <Widgets />
         </div>
       </Link>
     </div>
