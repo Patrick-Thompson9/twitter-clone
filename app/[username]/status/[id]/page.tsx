@@ -26,7 +26,7 @@ function page({ params }: { params: { username: string; id: string } }) {
     fetchPost();
   }, [params]);
 
-  console.log("Post", post);
+  if (post === undefined) return <div>Post not found :/</div>;
   return (
     <section className="grid grid-cols-1 justify-center place-items-center mt-20">
       {/* Post */}
@@ -40,7 +40,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       <div>{post && <Post postData={post} />}</div>
 
       {/* post stats */}
-      <Widgets offCard />
+      <Widgets offCard id={post?._id} />
 
       {/* reply option */}
       {/* TODO: Make post form actually make comment */}
