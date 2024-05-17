@@ -23,9 +23,9 @@ interface props {
 function Post({ postData }: props) {
   console.log("PostData", postData);
   return (
-    <div className="flex flex-col justify-start place-items-center relative my-3 w-full">
+    <div className="flex flex-col justify-center my-3 w-[67vw] md:w-[50vw] lg:w-[40vw]">
       {/* post card */}
-      <div className="flex flex-col justify-start relative bg-slate-950 border-sky-200/75 border p-14 rounded-lg py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5 hover:shadow-xl hover:shadow-sky-200/20 transition-shadow duration-300">
+      <div className="flex flex-col justify-start bg-slate-950 border-sky-200/75 border p-14 rounded-lg py-4 px-2 lg:py-8 lg:px-6 overflow-auto hover:shadow-xl hover:shadow-sky-200/20 transition-shadow duration-300">
         {/* post header */}
         <Link href={"/user?id=" + postData.author._id}>
           <div className="flex justify-start gap-2 items-center mb-2">
@@ -33,14 +33,14 @@ function Post({ postData }: props) {
               <img
                 src={postData.author.image}
                 referrerPolicy="no-referrer"
-                className="size-12 rounded-full border border-sky-200"
+                className=" size-8 md:size-12 rounded-full border border-sky-200"
               />
             ) : (
-              <GiWolfHowl className="size-14 rounded-full border border-sky-200" />
+              <GiWolfHowl className="size-10 md:size-14 rounded-full border border-sky-200" />
             )}
             <div className="flex justify-between items-start w-full">
               <div className="flex flex-col justify-start">
-                <span className="text-xl">{postData.author.name}</span>
+                <span className="md:text-xl">{postData.author.name}</span>
                 <span className="text-sky-200/50">
                   {postData.author.username}
                 </span>

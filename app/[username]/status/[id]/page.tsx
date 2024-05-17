@@ -2,6 +2,9 @@
 import { useState, useEffect } from "react";
 import PostData from "@/types/post";
 import axios from "axios";
+import Post from "@/app/components/Post";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import Link from "next/link";
 
 function page({ params }: { params: { username: string; id: string } }) {
   const [post, setPost] = useState<PostData>();
@@ -20,10 +23,18 @@ function page({ params }: { params: { username: string; id: string } }) {
 
   console.log("Post", post);
   return (
-    <div className="mt-40">
-      page {params.username}
-      {params.id}
-    </div>
+    <section className="flex justify-center mt-20 w-full">
+      <div className="flex flex-col justify-start items-start">
+        <Link
+          href="/"
+          className="flex justify-start items-center gap-2 text-xl"
+        >
+          <FaArrowLeftLong />
+          <span>Back</span>
+        </Link>
+        <div className="w-full">{post && <Post postData={post} />}</div>
+      </div>
+    </section>
   );
 }
 
