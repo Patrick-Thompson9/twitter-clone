@@ -41,9 +41,9 @@ function page({ params }: { params: { username: string; id: string } }) {
       {/* post stats */}
       {/* TODO: Make actual stats come up */}
       <div className="flex justify-between card-size px-4 py-2 items-center">
-        <span className="">Likes: 0</span>
-        <span className="">Comments: 0</span>
-        <span className="">Shares: 0</span>
+        <span className="hover:text-red-400">Likes: 0</span>
+        <span className="hover:text-sky-200">Comments: 0</span>
+        <span className="hover:text-emerald-200">Shares: 0</span>
       </div>
 
       {/* reply option */}

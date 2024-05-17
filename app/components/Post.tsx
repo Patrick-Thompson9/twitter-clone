@@ -8,13 +8,14 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import Link from "next/link";
 import UserHeader from "./UserHeader";
+import clsx from "clsx";
 
 TimeAgo.addLocale(en);
 
 const widgets = [
-  { name: "heart", icon: <FaHeart /> },
-  { name: "comment", icon: <SlSpeech /> },
-  { name: "share", icon: <FaPaperPlane /> },
+  { name: "heart", icon: <FaHeart />, color: "hover:text-red-400" },
+  { name: "comment", icon: <SlSpeech />, color: "hover:text-sky-200" },
+  { name: "share", icon: <FaPaperPlane />, color: "hover:text-emerald-200" },
 ];
 
 interface props {
@@ -49,7 +50,7 @@ function Post({ postData }: props) {
             {widgets.map((widget, index) => (
               <button
                 key={index}
-                className="text-xl hover:cursor-pointer"
+                className={clsx("text-xl hover:cursor-pointer", widget.color)}
                 aria-description={widget.name}
               >
                 {widget.icon}
