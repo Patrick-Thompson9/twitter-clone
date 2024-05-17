@@ -11,7 +11,7 @@ function UserHeader({ User }: props) {
   return (
     <Link
       href={"/user?id=" + User._id}
-      className="flex items-center justify-start gap-2"
+      className="flex items-center justify-start gap-2 p-1 rounded-lg hover:shadow-xl hover:border hover:border-sky-200 hover:shadow-sky-200/20 transition-shadow duration-300"
     >
       {User.image ? (
         <img
