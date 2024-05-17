@@ -39,6 +39,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       <div>{post && <Post postData={post} />}</div>
 
       {/* post stats */}
+      {/* TODO: Make actual stats come up */}
       <div className="flex justify-between card-size px-4 py-2 items-center">
         <span className="">Likes: 0</span>
         <span className="">Comments: 0</span>
@@ -46,6 +47,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       </div>
 
       {/* reply option */}
+      {/* TODO: Make post form actually make comment */}
       <PostForm
         userInfo={userInfo}
         onPost={() => {

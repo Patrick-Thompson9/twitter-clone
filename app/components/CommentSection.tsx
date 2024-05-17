@@ -7,6 +7,7 @@ interface props {
 }
 
 function CommentSection({ User }: props) {
+  // TODO: Make comments come from db instead of hard code
   const comments = [1, 2, 3, 4, 5];
 
   return (
