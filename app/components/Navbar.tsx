@@ -79,7 +79,9 @@ function Navbar() {
                 className="flex items-center justify-center size-20"
               >
                 <a href={link.path}>
-                  <span className="size-full text-4xl">{link.icon}</span>
+                  <span className="size-full text-4xl hover:filter hover:text-sky-200">
+                    {link.icon}
+                  </span>
                 </a>
               </li>
             ))}
