@@ -50,6 +50,10 @@ body,
   -webkit-mask-composite: xor;
 }
 
+.card-size {
+  @apply w-[67vw] md:w-[50vw] lg:w-[40vw];
+}
+
 /* cancel animations if user prefers reduced motion */
 @media (prefers-reduced-motion) {
   .linear-overlay,

@@ -55,7 +55,7 @@ function LoginForm({ providers }: Props) {
   };
 
   return (
-    <div className="border-sky-200/45 bg-gray-900 border shadow-xl rounded-lg my-12 py-4 px-2 w-2/3 md:w-3/5 lg:py-8 lg:px-6 lg:w-2/5">
+    <div className="border-sky-200/45 bg-gray-900 border shadow-xl rounded-lg my-12 py-4 px-2 card-size lg:py-8 lg:px-6">
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col items-start justify-center px-14 -z-20">
           <label htmlFor="username" className="">
