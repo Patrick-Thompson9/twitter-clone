@@ -7,6 +7,7 @@ import ReactTimeAgo from "react-time-ago";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import Link from "next/link";
+import UserHeader from "./UserHeader";
 
 TimeAgo.addLocale(en);
 
@@ -23,34 +24,13 @@ interface props {
 function Post({ postData }: props) {
   console.log("PostData", postData);
   return (
-    <div className="flex flex-col justify-center my-3 w-[67vw] md:w-[50vw] lg:w-[40vw]">
+    <div className="flex flex-col justify-center mt-3 card-size">
       {/* post card */}
       <div className="flex flex-col justify-start bg-slate-950 border-sky-200/75 border p-14 rounded-lg py-4 px-2 lg:py-8 lg:px-6 overflow-auto hover:shadow-xl hover:shadow-sky-200/20 transition-shadow duration-300">
         {/* post header */}
 
         <div className="flex justify-between gap-2 items-center mb-2 select-auto">
-          <Link
-            href={"/user?id=" + postData.author._id}
-            className="flex items-center justify-start gap-2"
-          >
-            {postData.author.image ? (
-              <img
-                src={postData.author.image}
-                referrerPolicy="no-referrer"
-                className=" size-8 md:size-12 rounded-full border border-sky-200"
-              />
-            ) : (
-              <GiWolfHowl className="size-10 md:size-14 rounded-full border border-sky-200" />
-            )}
-            <div className="flex justify-between items-start w-full">
-              <div className="flex flex-col justify-start">
-                <span className="md:text-xl">{postData.author.name}</span>
-                <span className="text-sky-200/50">
-                  {postData.author.username}
-                </span>
-              </div>
-            </div>
-          </Link>
+          <UserHeader User={postData.author} />
           <span className="text-sky-200/50">
             <ReactTimeAgo date={postData.createdAt} />
           </span>
