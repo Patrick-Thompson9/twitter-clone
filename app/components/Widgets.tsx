@@ -5,10 +5,11 @@ import { FaHeart, FaPaperPlane } from "react-icons/fa6";
 import { SlSpeech } from "react-icons/sl";
 
 interface Props {
+  liked?: boolean;
   offCard?: boolean;
 }
 
-function Widgets({ offCard = false }: Props) {
+function Widgets({ liked = false, offCard = false }: Props) {
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState(0);
   const [shares, setShares] = useState(0);
@@ -76,7 +77,11 @@ function Widgets({ offCard = false }: Props) {
       {widgets.map((widget, index) => (
         <button
           key={index}
-          className={clsx("text-xl hover:cursor-pointer", widget.color)}
+          className={clsx(
+            "text-xl hover:cursor-pointer",
+            widget.color,
+            widget.name === "heart" && liked && "text-red-400"
+          )}
           onClick={widget.onClick}
           aria-description={widget.name}
         >
