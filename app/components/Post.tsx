@@ -44,15 +44,16 @@ function Post({ postData }: props) {
           </div>
 
           {/* post widgets */}
+          {/* TODO Make widgets work */}
           <div className="flex gap-3 mt-2 justify-start items-center">
             {widgets.map((widget, index) => (
-              <span
+              <button
                 key={index}
                 className="text-xl hover:cursor-pointer"
                 aria-description={widget.name}
               >
                 {widget.icon}
-              </span>
+              </button>
             ))}
           </div>
         </div>
