@@ -16,7 +16,7 @@ function CommentSection({ postData }: props) {
       <span className="text-xl font-medium my-4 mx-2 ">Comments</span>
       <ul className="divide-y divide-slate-200/25 border border-sky-200/75 rounded-lg">
         {comments.map((comment, index) => (
-          <Comment postData={postData} />
+          <Comment key={index} postData={postData} />
         ))}
       </ul>
     </div>
