@@ -40,7 +40,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       <div>{post && <Post postData={post} />}</div>
 
       {/* post stats */}
-      <Widgets offCard id={post?._id} />
+      <Widgets offCard postData={post} />
 
       {/* reply option */}
       {/* TODO: Make post form actually make comment */}
