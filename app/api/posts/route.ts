@@ -13,6 +13,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const posts = await Post.find()
     .populate("author")
     .sort({ createdAt: -1 })
+    .limit(20)
     .exec();
   return NextResponse.json(posts);
 }
