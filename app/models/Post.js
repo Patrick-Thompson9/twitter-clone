@@ -6,6 +6,9 @@ const PostSchema = new Schema(
   {
     author: { type: mongoose.Types.ObjectId, ref: "User" },
     text: String,
+    likeCount: { type: Number, default: 0 },
+    commentCount: { type: Number, default: 0 },
+    shareCount: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
