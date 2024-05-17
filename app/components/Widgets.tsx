@@ -60,10 +60,11 @@ function Widgets({ offCard = false }: Props) {
               widget.color
             )}
           >
-            {widget.icon}
-            <span>
-              {`${widget.name}s`}: {widget.state}
-            </span>
+            <div className="flex items-center gap-1">
+              {widget.icon}
+              <span className="hidden md:inline">{`${widget.name}s: `}</span>
+              <span>{widget.state}</span>
+            </div>
           </div>
         ))}
       </div>
