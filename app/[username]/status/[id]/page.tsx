@@ -13,10 +13,12 @@ import Widgets from "@/app/components/Widgets";
 function page({ params }: { params: { username: string; id: string } }) {
   const { userInfo, userInfoStatus } = useUserInfo();
   const [post, setPost] = useState<PostData>();
+  const [likedByMe, setLikedByMe] = useState(false);
 
   const fetchPost = async () => {
     const posts = await axios.get(`/api/posts?id=${params.id}`).then((res) => {
-      setPost(res.data);
+      setPost(res.data.post);
+      setLikedByMe(res.data.likedByMe);
     });
 
     return posts;
@@ -37,10 +39,14 @@ function page({ params }: { params: { username: string; id: string } }) {
         <FaArrowLeftLong />
         <span>Back</span>
       </Link>
-      <div>{post && <Post postData={post} />}</div>
+      <div>
+        {post && (
+          <Post noWidgets postData={post} likedByMeDefault={likedByMe} />
+        )}
+      </div>
 
       {/* post stats */}
-      <Widgets offCard postData={post} />
+      <Widgets offCard postData={post} likedByMeDefault={likedByMe} />
 
       {/* reply option */}
       {/* TODO: Make post form actually make comment */}
