@@ -11,9 +11,15 @@ TimeAgo.addLocale(en);
 
 interface props {
   postData: PostData;
+  likedByMeDefault?: boolean;
+  noWidgets?: boolean;
 }
 
-function Post({ postData }: props) {
+function Post({
+  postData,
+  likedByMeDefault = false,
+  noWidgets = false,
+}: props) {
   if (!postData) return <div>Post not found :/</div>;
   return (
     <div className="flex flex-col justify-center mt-3 card-size">
@@ -31,7 +37,12 @@ function Post({ postData }: props) {
 
           {/* post widgets */}
           <div className="flex flex-col gap-4">
-            <Widgets postData={postData} />
+            {!noWidgets && (
+              <Widgets
+                postData={postData}
+                likedByMeDefault={likedByMeDefault}
+              />
+            )}
             <span className="text-sky-200/50">
               <ReactTimeAgo date={postData.createdAt} />
             </span>
