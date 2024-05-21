@@ -9,14 +9,16 @@ function page() {
         <span className="text-5xl font-semibold place-self-center">
           Settings
         </span>
-        <div>Account</div>
-        <div>
-          <span>Theme (not yet available)</span>
+        <div className="w-full divide-y divide-sky-200/25">
+          <div>Account</div>
+          <div>
+            <span>Theme (not yet available)</span>
+          </div>
+          <div>
+            <span>Reduce motion</span>
+          </div>
+          <div>About</div>
         </div>
-        <div>
-          <span>Reduce motion</span>
-        </div>
-        <div>About</div>
 
         <button
           className="flex justify-start items-center gap-1 text-red-400 rounded-lg bg-slate-900 border border-sky-200/75 px-3 py-2 hover:bg-red-950 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:shadow-red-700/40 mt-10"
