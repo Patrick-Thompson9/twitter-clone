@@ -6,12 +6,16 @@ import Spinner from "./components/Spinner";
 import PostForm from "./components/PostForm";
 import Post from "./components/Post";
 import axios from "axios";
+import PostData from "@/types/post";
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<PostData[]>([]);
+  const [idsLikedByMe, setIdsLikedByMe] = useState<string[]>([]);
+
   const fetchPosts = async () => {
     const posts = await axios.get("/api/posts").then((res) => {
-      setPosts(res.data);
+      setPosts(res.data.posts);
+      setIdsLikedByMe(res.data.idsLikedByMe);
     });
 
     return posts;
@@ -42,7 +46,13 @@ export default function Home() {
         <div className="text-xl">No posts yet</div>
       ) : (
         posts.map((post, index) => {
-          return <Post key={index} postData={post} />;
+          return (
+            <Post
+              key={index}
+              postData={post}
+              likedByMeDefault={idsLikedByMe.includes(post._id)}
+            />
+          );
         })
       )}
     </section>
