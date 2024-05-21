@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { useState } from "react";
 import { FaHeart, FaPaperPlane } from "react-icons/fa6";
 import { SlSpeech } from "react-icons/sl";
+import FlipNumbers from "react-flip-numbers";
 
 interface Props {
   postData: PostData;
@@ -88,7 +89,13 @@ function Widgets({
             >
               {widget.icon}
               <span className="hidden md:inline">{`${widget.name}s: `}</span>
-              <span>{widget.state}</span>
+              <FlipNumbers
+                height={12}
+                width={12}
+                play
+                perspective={100}
+                numbers={widget.state.toString()}
+              />
             </button>
           </div>
         ))}
@@ -97,7 +104,13 @@ function Widgets({
   } else {
     return (
       <div className="flex gap-3 mt-2 justify-start items-center">
-        <div className="text-sky-200/50 font-light">{likeCount}</div>
+        <FlipNumbers
+          height={12}
+          width={12}
+          play
+          perspective={100}
+          numbers={likeCount.toString()}
+        />
         {widgets?.map((widget, index) => (
           <button
             key={index}
