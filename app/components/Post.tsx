@@ -30,24 +30,20 @@ function Post({
           {/* post header */}
 
           {/* post body */}
-          <div className="border border-sky-200/25 w-full min-h-20 rounded-sm py-1 px-2 ">
+          <div className="border border-sky-200/25 w-full min-h-20 rounded-sm py-1 px-2 hover:shadow-xl hover:shadow-sky-200/20 hover:border-sky-200 transition-all duration-300">
             {/* post text */}
             {postData.text}
           </div>
-
-          {/* post widgets */}
-          <div className="flex flex-col gap-4">
-            {!noWidgets && (
-              <Widgets
-                postData={postData}
-                likedByMeDefault={likedByMeDefault}
-              />
-            )}
-            <span className="text-sky-200/50">
-              <ReactTimeAgo date={postData.createdAt} />
-            </span>
-          </div>
         </Link>
+        {/* post widgets */}
+        <div className="flex flex-col gap-4">
+          {!noWidgets && (
+            <Widgets postData={postData} likedByMeDefault={likedByMeDefault} />
+          )}
+          <span className="text-sky-200/50">
+            <ReactTimeAgo date={postData.createdAt} />
+          </span>
+        </div>
       </div>
     </div>
   );
