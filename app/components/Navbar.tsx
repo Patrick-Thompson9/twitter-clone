@@ -3,12 +3,9 @@ import clsx from "clsx";
 import { useState } from "react";
 import { FaGear, FaX, FaHouseChimneyCrack, FaTree } from "react-icons/fa6";
 import { GiFox, GiStack } from "react-icons/gi";
-import { ImExit } from "react-icons/im";
-import { GiWolfHowl } from "react-icons/gi";
 import SearchBar from "./SearchBar";
-import { signOut } from "next-auth/react";
 import useUserInfo from "@/hooks/useUserInfo";
-import { useRouter } from "next/navigation";
+import LogInLogOut from "./LogInLogOut";
 
 const NavLinks = [
   { title: "Home", path: "/", icon: <FaHouseChimneyCrack /> },
@@ -20,12 +17,6 @@ const NavLinks = [
 function Navbar() {
   const { userInfo, setUserInfo, userInfoStatus } = useUserInfo();
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
-
-  const logout = async () => {
-    setUserInfo(undefined);
-    await signOut();
-  };
 
   return (
     <nav className="fixed top-0 inset-x-0 z-50">
@@ -71,29 +62,7 @@ function Navbar() {
                   </li>
                 ))}
               </ul>
-              <button
-                className="absolute bottom-0 my-4"
-                onClick={
-                  userInfo
-                    ? () => signOut()
-                    : () => {
-                        router.push("/login");
-                        setIsOpen(false);
-                      }
-                }
-              >
-                {userInfo ? (
-                  <div className="flex p-2 justify-center items-center gap-1 hover:text-red-400">
-                    <ImExit className="size-7" />
-                    <div className="text-xl font-semibold">Sign out</div>
-                  </div>
-                ) : (
-                  <div className="flex p-2 justify-center items-center gap-1 hover:text-sky-200">
-                    <GiWolfHowl className="size-7" />
-                    <div className="text-xl font-semibold">Log In</div>
-                  </div>
-                )}
-              </button>
+              <LogInLogOut isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
           </div>
 

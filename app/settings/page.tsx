@@ -1,6 +1,5 @@
 "use client";
-import { signOut } from "next-auth/react";
-import { ImExit } from "react-icons/im";
+import LogInLogOut from "../components/LogInLogOut";
 
 function page() {
   return (
@@ -19,14 +18,7 @@ function page() {
           </div>
           <div>About</div>
         </div>
-
-        <button
-          className="flex justify-start items-center gap-1 text-red-400 rounded-lg bg-slate-900 border border-sky-200/75 px-3 py-2 hover:bg-red-950 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:shadow-red-700/40 mt-10"
-          onClick={() => signOut()}
-        >
-          <ImExit className="size-6" />
-          <span className="font-medium text-xl">Log Out</span>
-        </button>
+        <LogInLogOut />
       </div>
     </section>
   );
