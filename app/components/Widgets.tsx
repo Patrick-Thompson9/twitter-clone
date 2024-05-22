@@ -6,6 +6,8 @@ import { useState } from "react";
 import { FaHeart, FaPaperPlane } from "react-icons/fa6";
 import { SlSpeech } from "react-icons/sl";
 import FlipNumbers from "react-flip-numbers";
+import { useRouter } from "next/navigation";
+import useUserInfo from "@/hooks/useUserInfo";
 
 interface Props {
   postData: PostData;
@@ -26,10 +28,17 @@ function Widgets({
   offCard = false,
   likedByMeDefault = false,
 }: Props) {
+  const { userInfo, setUserInfo, userInfoStatus } = useUserInfo();
+  const router = useRouter();
+
   const [likedByMe, setLikedByMe] = useState(likedByMeDefault);
   const [likeCount, setLikeCount] = useState(postData.likeCount);
 
   const handleLike = async () => {
+    if (userInfo === undefined) {
+      router.push("/login");
+      return;
+    }
     const res = await axios.post("/api/like", { id: postData._id });
     if (res.data) {
       setLikedByMe(true);
@@ -40,7 +49,12 @@ function Widgets({
     }
   };
 
-  const handleComment = () => {};
+  const handleComment = () => {
+    if (userInfo === undefined) {
+      router.push("/login");
+      return;
+    }
+  };
 
   const handleShare = () => {};
 
