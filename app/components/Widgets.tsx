@@ -13,6 +13,7 @@ interface Props {
   postData: PostData;
   offCard?: boolean;
   likedByMeDefault?: boolean;
+  commentCount?: number;
 }
 
 interface Widget {
@@ -27,6 +28,7 @@ function Widgets({
   postData,
   offCard = false,
   likedByMeDefault = false,
+  commentCount = postData.commentCount,
 }: Props) {
   const { userInfo, setUserInfo, userInfoStatus } = useUserInfo();
   const router = useRouter();
@@ -75,7 +77,7 @@ function Widgets({
       name: "comment",
       icon: <SlSpeech />,
       color: "hover:text-sky-200",
-      state: postData.commentCount,
+      state: commentCount,
       onClick: handleComment,
     },
     {

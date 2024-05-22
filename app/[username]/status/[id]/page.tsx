@@ -16,6 +16,7 @@ function page({ params }: { params: { username: string; id: string } }) {
   const [replies, setReplies] = useState<PostData[]>([]);
   const [likedByMe, setLikedByMe] = useState(false);
   const [repliesLikedByMe, setRepliesLikedByMe] = useState<string[]>([]);
+  const [commentCount, setCommentCount] = useState(0);
 
   const fetchPost = async () => {
     const posts = await axios
@@ -34,6 +35,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       .then((res) => {
         setReplies(res.data.posts);
         setRepliesLikedByMe(res.data.idsLikedByMe);
+        setCommentCount(res.data.posts.length);
       });
   };
 
@@ -59,7 +61,12 @@ function page({ params }: { params: { username: string; id: string } }) {
       </div>
 
       {/* post stats */}
-      <Widgets offCard postData={post} likedByMeDefault={likedByMe} />
+      <Widgets
+        offCard
+        postData={post}
+        likedByMeDefault={likedByMe}
+        commentCount={commentCount}
+      />
 
       {/* reply option */}
       <PostForm
