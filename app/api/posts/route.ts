@@ -29,12 +29,12 @@ export async function GET(req: NextRequest, res: NextResponse) {
       .sort({ createdAt: -1 })
       .limit(20)
       .exec();
-    const liked = await Like.find({
+    const postsLikedByMe = await Like.find({
       author: session?.user.id,
       post: posts.map((p) => p._id),
     }).exec();
-    const likedByMe = liked.length === 0 ? false : true;
-    return NextResponse.json({ posts, likedByMe });
+    const idsLikedByMe = postsLikedByMe.map((like) => like.post);
+    return NextResponse.json({ posts, idsLikedByMe });
   }
 
   const posts = await Post.find({ parent: null })
