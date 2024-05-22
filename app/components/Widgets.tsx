@@ -56,7 +56,7 @@ function Widgets({
       return;
     }
 
-    if (url === "/") {
+    if (url !== `/${postData.author.username}/status/${postData._id}`) {
       router.push(`/${postData.author.username}/status/${postData._id}`);
     }
   };
