@@ -5,24 +5,10 @@ import Comment from "./Comment";
 import axios from "axios";
 
 interface props {
-  parent: PostData;
+  replies: PostData[];
 }
 
-function CommentSection({ parent }: props) {
-  const [replies, setReplies] = useState<PostData[]>([]);
-
-  const fetchComments = async () => {
-    const children = await axios
-      .get(`/api/posts?parent=${parent._id}`)
-      .then((res) => {
-        setReplies(res.data.posts);
-      });
-  };
-
-  useEffect(() => {
-    fetchComments();
-  }, [parent]);
-  console.log(replies);
+function CommentSection({ replies }: props) {
   return (
     <div className="flex flex-col justify-center card-size">
       {replies.length === 0 ? (

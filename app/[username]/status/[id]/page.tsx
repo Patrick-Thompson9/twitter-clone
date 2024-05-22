@@ -13,15 +13,26 @@ import Widgets from "@/app/components/Widgets";
 function page({ params }: { params: { username: string; id: string } }) {
   const { userInfo, userInfoStatus } = useUserInfo();
   const [post, setPost] = useState<PostData>();
+  const [replies, setReplies] = useState<PostData[]>([]);
   const [likedByMe, setLikedByMe] = useState(false);
 
   const fetchPost = async () => {
-    const posts = await axios.get(`/api/posts?id=${params.id}`).then((res) => {
-      setPost(res.data.post);
-      setLikedByMe(res.data.likedByMe);
-    });
+    const posts = await axios
+      .get(`/api/posts?id=${params.id}`)
+      .then((res) => {
+        setPost(res.data.post);
+        setLikedByMe(res.data.likedByMe);
+        return res.data.post;
+      })
+      .then((post) => fetchComments(post._id));
+  };
 
-    return posts;
+  const fetchComments = async (parentId: string) => {
+    const children = await axios
+      .get(`/api/posts?parent=${parentId}`)
+      .then((res) => {
+        setReplies(res.data.posts);
+      });
   };
 
   useEffect(() => {
@@ -52,14 +63,14 @@ function page({ params }: { params: { username: string; id: string } }) {
       <PostForm
         userInfo={userInfo}
         onPost={() => {
-          // fetchComments();
+          fetchComments(post._id);
         }}
         parent={post?._id}
         defaultText="Reply"
       />
 
       {/* Comment Section */}
-      <CommentSection parent={post} />
+      <CommentSection replies={replies} />
     </section>
   );
 }
