@@ -7,7 +7,8 @@ import { authOptions } from "../auth/[...nextauth]/route";
 export async function GET(req: NextRequest, res: NextResponse) {
   await initMongoose();
   const id = req.nextUrl.searchParams.get("id");
-  const user = await User.findById(id);
+  const username = req.nextUrl.searchParams.get("username");
+  const user = await User.findOne({ id, username });
   return NextResponse.json(user);
 }
 
