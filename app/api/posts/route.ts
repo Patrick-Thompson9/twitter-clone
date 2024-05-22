@@ -46,5 +46,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
     parent: data.parent,
   });
 
+  if (data.parent) {
+    const parentPost = await Post.findById(data.parent);
+    parentPost.commentCount = await Post.countDocuments({
+      parent: data.parent,
+    });
+    await parentPost.save();
+  }
+
   return NextResponse.json(newPost);
 }
