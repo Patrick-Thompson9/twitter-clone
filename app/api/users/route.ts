@@ -16,6 +16,6 @@ export async function PUT(req: NextRequest, res: NextResponse) {
   const session = await getServerSession(authOptions);
   const data = await req.json();
   const username = data.username;
-  await User.findByIdAndUpdate(session?.user.id, { username });
-  return NextResponse.json("Okie Dokie :)");
+  const newUser = await User.findByIdAndUpdate(session?.user.id, { username });
+  return NextResponse.json(newUser);
 }
