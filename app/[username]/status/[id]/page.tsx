@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import PostData from "@/types/post";
 import axios from "axios";
 import Post from "@/app/components/Post";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import Link from "next/link";
 import CommentSection from "@/app/components/CommentSection";
 import PostForm from "@/app/components/PostForm";
 import useUserInfo from "@/hooks/useUserInfo";
