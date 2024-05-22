@@ -11,7 +11,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
   User.init();
   const session = await getServerSession(authOptions);
   const id = req.nextUrl.searchParams.get("id");
-  const parent = req.nextUrl.searchParams.get("parent");
 
   if (id) {
     const post = await Post.findById(id).populate("author");
@@ -21,14 +20,14 @@ export async function GET(req: NextRequest, res: NextResponse) {
     }).exec();
     const likedByMe = liked.length === 0 ? false : true;
     return NextResponse.json({ post, likedByMe });
-  }
-
-  if (parent) {
-    const posts = await Post.find({ parent: parent })
+  } else {
+    const parent = req.nextUrl.searchParams.get("parent") || null;
+    const posts = await Post.find({ parent })
       .populate("author")
       .sort({ createdAt: -1 })
       .limit(20)
       .exec();
+
     const postsLikedByMe = await Like.find({
       author: session?.user.id,
       post: posts.map((p) => p._id),
@@ -36,19 +35,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const idsLikedByMe = postsLikedByMe.map((like) => like.post);
     return NextResponse.json({ posts, idsLikedByMe });
   }
-
-  const posts = await Post.find({ parent: null })
-    .populate("author")
-    .sort({ createdAt: -1 })
-    .limit(20)
-    .exec();
-
-  const postsLikedByMe = await Like.find({
-    author: session?.user.id,
-    post: posts.map((p) => p._id),
-  }).exec();
-  const idsLikedByMe = postsLikedByMe.map((like) => like.post);
-  return NextResponse.json({ posts, idsLikedByMe });
 }
 
 export async function POST(req: NextRequest, res: NextResponse) {
