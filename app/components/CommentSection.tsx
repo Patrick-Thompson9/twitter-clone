@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Post from "./Post";
 import PostData from "@/types/post";
 import Comment from "./Comment";
-import axios from "axios";
 
 interface props {
   replies: PostData[];
