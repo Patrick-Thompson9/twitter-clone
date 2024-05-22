@@ -1,24 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import PostData from "@/types/post";
 import Comment from "./Comment";
+import axios from "axios";
 
 interface props {
-  postData: PostData;
+  parent: PostData;
 }
 
-function CommentSection({ postData }: props) {
-  // TODO: Make comments come from db instead of hard code
-  const comments = [1, 2, 3, 4, 5];
+function CommentSection({ parent }: props) {
+  const [replies, setReplies] = useState<PostData[]>([]);
 
+  const fetchComments = async () => {
+    const children = await axios
+      .get(`/api/posts?parent=${parent._id}`)
+      .then((res) => {
+        setReplies(res.data.posts);
+      });
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, [parent]);
+  console.log(replies);
   return (
     <div className="flex flex-col justify-center card-size">
-      <span className="text-xl font-medium my-4 mx-2 ">Comments</span>
-      <ul className="divide-y divide-slate-200/25 border border-sky-200/75 rounded-lg">
-        {comments.map((comment, index) => (
-          <Comment key={index} postData={postData} />
-        ))}
-      </ul>
+      {replies.length === 0 ? (
+        <span className="text-xl font-medium my-4 mx-2 text-center">
+          No comments yet
+        </span>
+      ) : (
+        <>
+          <span className="text-xl font-medium my-4 mx-2 ">Comments</span>
+          <ul className="divide-y divide-slate-200/25 border border-sky-200/75 rounded-lg">
+            {replies.map((comment, index) => (
+              <Comment key={index} postData={comment} />
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 }
