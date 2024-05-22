@@ -29,7 +29,7 @@ function PostForm({
       router.push("/login");
       return;
     }
-    console.log("text:", text, "Parent:", parent);
+
     const json = await axios.post("/api/posts", { text, parent });
     setText("");
     if (onPost) onPost();
