@@ -8,6 +8,7 @@ type PostData = {
   likeCount: number;
   commentCount: number;
   shareCount: number;
+  parent: string;
 };
 
 export default PostData;
