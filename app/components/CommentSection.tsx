@@ -6,9 +6,10 @@ import axios from "axios";
 
 interface props {
   replies: PostData[];
+  idsLikedByMe: string[];
 }
 
-function CommentSection({ replies }: props) {
+function CommentSection({ replies, idsLikedByMe }: props) {
   return (
     <div className="flex flex-col justify-center card-size">
       {replies.length === 0 ? (
@@ -20,7 +21,11 @@ function CommentSection({ replies }: props) {
           <span className="text-xl font-medium my-4 mx-2 ">Comments</span>
           <ul className="divide-y divide-slate-200/25 border border-sky-200/75 rounded-lg">
             {replies.map((comment, index) => (
-              <Comment key={index} postData={comment} />
+              <Comment
+                key={index}
+                postData={comment}
+                likedByMe={idsLikedByMe.includes(comment._id)}
+              />
             ))}
           </ul>
         </>

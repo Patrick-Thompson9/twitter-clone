@@ -15,6 +15,7 @@ function page({ params }: { params: { username: string; id: string } }) {
   const [post, setPost] = useState<PostData>();
   const [replies, setReplies] = useState<PostData[]>([]);
   const [likedByMe, setLikedByMe] = useState(false);
+  const [repliesLikedByMe, setRepliesLikedByMe] = useState<string[]>([]);
 
   const fetchPost = async () => {
     const posts = await axios
@@ -32,6 +33,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       .get(`/api/posts?parent=${parentId}`)
       .then((res) => {
         setReplies(res.data.posts);
+        setRepliesLikedByMe(res.data.idsLikedByMe);
       });
   };
 
@@ -70,7 +72,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       />
 
       {/* Comment Section */}
-      <CommentSection replies={replies} />
+      <CommentSection replies={replies} idsLikedByMe={repliesLikedByMe} />
     </section>
   );
 }

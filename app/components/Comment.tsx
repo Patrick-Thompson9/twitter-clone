@@ -11,9 +11,10 @@ TimeAgo.addLocale(en);
 
 interface props {
   postData: PostData;
+  likedByMe?: boolean;
 }
 
-function Comment({ postData }: props) {
+function Comment({ postData, likedByMe = false }: props) {
   return (
     <div className="px-4 py-2 bg-slate-900">
       <UserHeader User={postData.author} />
@@ -25,7 +26,7 @@ function Comment({ postData }: props) {
           <span>{postData.text}</span>
           <ReactTimeAgo date={postData.createdAt} className="text-sky-200/50" />
         </Link>
-        <Widgets postData={postData} />
+        <Widgets postData={postData} likedByMeDefault={likedByMe} />
       </div>
     </div>
   );
