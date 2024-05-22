@@ -6,7 +6,7 @@ import { useState } from "react";
 import { FaHeart, FaPaperPlane } from "react-icons/fa6";
 import { SlSpeech } from "react-icons/sl";
 import FlipNumbers from "react-flip-numbers";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import useUserInfo from "@/hooks/useUserInfo";
 
 interface Props {
@@ -30,6 +30,7 @@ function Widgets({
 }: Props) {
   const { userInfo, setUserInfo, userInfoStatus } = useUserInfo();
   const router = useRouter();
+  const url = usePathname();
 
   const [likedByMe, setLikedByMe] = useState(likedByMeDefault);
   const [likeCount, setLikeCount] = useState(postData.likeCount);
@@ -53,6 +54,10 @@ function Widgets({
     if (userInfo === undefined) {
       router.push("/login");
       return;
+    }
+
+    if (url === "/") {
+      router.push(`/${postData.author.username}/status/${postData._id}`);
     }
   };
 
