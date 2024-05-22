@@ -49,7 +49,6 @@ function page({ params }: { params: { username: string; id: string } }) {
       <Widgets offCard postData={post} likedByMeDefault={likedByMe} />
 
       {/* reply option */}
-      {/* TODO: Make post form actually make comment */}
       <PostForm
         userInfo={userInfo}
         onPost={() => {
@@ -60,7 +59,7 @@ function page({ params }: { params: { username: string; id: string } }) {
       />
 
       {/* Comment Section */}
-      {post?.author && <CommentSection postData={post} />}
+      <CommentSection parent={post} />
     </section>
   );
 }
