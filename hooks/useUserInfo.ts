@@ -24,5 +24,5 @@ export default function useUserInfo() {
     getUserInfo();
   }, [sessionStatus]);
 
-  return { userInfo, userInfoStatus };
+  return { userInfo, setUserInfo, userInfoStatus };
 }
