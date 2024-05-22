@@ -1,12 +1,14 @@
 import { NextResponse, NextRequest } from "next/server";
-import Post from "../../models/Post";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { initMongoose } from "../auth/[...nextauth]/lib/mongoose";
+import User from "@/app/models/User";
+import Post from "../../models/Post";
 import Like from "@/app/models/Like";
 
 export async function GET(req: NextRequest, res: NextResponse) {
   await initMongoose();
+  User.init();
   const session = await getServerSession(authOptions);
   const id = req.nextUrl.searchParams.get("id");
 
