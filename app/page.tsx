@@ -7,7 +7,6 @@ import PostForm from "./components/PostForm";
 import Post from "./components/Post";
 import axios from "axios";
 import PostData from "@/types/post";
-import { signOut } from "next-auth/react";
 
 export default function Home() {
   const { userInfo, setUserInfo, userInfoStatus } = useUserInfo();
