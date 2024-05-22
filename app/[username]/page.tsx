@@ -3,8 +3,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import BackButton from "../components/BackButton";
 import UserInfo from "@/types/user";
+import { useRouter } from "next/navigation";
 
 function page({ params }: { params: { username: string } }) {
+  const router = useRouter();
   const [profile, setProfile] = useState<UserInfo>();
   const getUser = async () => {
     const user = await axios
@@ -17,7 +19,7 @@ function page({ params }: { params: { username: string } }) {
     getUser();
   }, [params]);
 
-  if (!profile) return <div>User not found :/</div>;
+  if (!profile) router.push("/error/404");
 
   return (
     <section className="mt-20">
