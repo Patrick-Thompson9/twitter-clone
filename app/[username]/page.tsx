@@ -19,7 +19,10 @@ function page({ params }: { params: { username: string } }) {
     getUser();
   }, [params]);
 
-  if (!profile) router.push("/error/404");
+  if (!profile) {
+    router.push("/error/404");
+    return;
+  }
 
   return (
     <section className="mt-20">
