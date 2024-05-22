@@ -9,9 +9,14 @@ export default function useUserInfo() {
 
   const getUserInfo = () => {
     setUserInfoStatus("loading");
-    if (sessionStatus === "loading" || !session) {
+    if (sessionStatus === "loading") {
       return;
     }
+    if (!session || !session.user) {
+      setUserInfoStatus("unauthenticated");
+      return;
+    }
+
     fetch("/api/users?id=" + session.user.id)
       .then((res) => res.json())
       .then((json) => {
