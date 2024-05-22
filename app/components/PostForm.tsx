@@ -11,12 +11,14 @@ interface props {
   userInfo: UserInfo | undefined;
   onPost: () => void;
   defaultText?: "What's on your mind?" | "Reply";
+  parent?: string | null;
 }
 
 function PostForm({
   userInfo,
   onPost,
   defaultText = "What's on your mind?",
+  parent = null,
 }: props) {
   const router = useRouter();
   const [text, setText] = useState("");
@@ -27,7 +29,8 @@ function PostForm({
       router.push("/login");
       return;
     }
-    const json = await axios.post("/api/posts", { text });
+    console.log("text:", text, "Parent:", parent);
+    const json = await axios.post("/api/posts", { text, parent });
     setText("");
     if (onPost) onPost();
   };

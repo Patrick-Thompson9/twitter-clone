@@ -39,10 +39,10 @@ export async function GET(req: NextRequest, res: NextResponse) {
 export async function POST(req: NextRequest, res: NextResponse) {
   const session = await getServerSession(authOptions);
   const data = await req.json();
-  const text = data.text;
   const newPost = await Post.create({
     author: session?.user.id,
-    text: text,
+    text: data.text,
+    parent: data.parent,
   });
 
   return NextResponse.json(newPost);

@@ -53,8 +53,9 @@ function page({ params }: { params: { username: string; id: string } }) {
       <PostForm
         userInfo={userInfo}
         onPost={() => {
-          return;
+          // fetchComments();
         }}
+        parent={post?._id}
         defaultText="Reply"
       />
 
