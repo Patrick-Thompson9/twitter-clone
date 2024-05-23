@@ -8,8 +8,14 @@ export async function GET(req: NextRequest, res: NextResponse) {
   await initMongoose();
   const id = req.nextUrl.searchParams.get("id");
   const username = req.nextUrl.searchParams.get("username");
-  const user = await User.findOne({ id, username });
-  return NextResponse.json(user);
+  if (username) {
+    const user = await User.findOne({ username });
+    return NextResponse.json(user);
+  }
+  if (id) {
+    const user = await User.findById(id);
+    return NextResponse.json(user);
+  }
 }
 
 export async function PUT(req: NextRequest, res: NextResponse) {
