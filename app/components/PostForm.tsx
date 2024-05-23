@@ -25,7 +25,7 @@ function PostForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (userInfo === undefined) {
+    if (!userInfo) {
       router.push("/login");
       return;
     }
@@ -58,7 +58,7 @@ function PostForm({
           value={text}
           onChange={(e) => setText(e.target.value)}
         ></textarea>
-        <button type="submit">
+        <button type="submit" disabled={!text}>
           <ShinyButton buttonText="Post" classes={"text-center md:max-w-28"} />
         </button>
       </form>
