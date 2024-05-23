@@ -32,9 +32,8 @@ function UsernameForm() {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ username: usernameInput.value }),
-    });
-    setUsername(usernameInput.value);
-    router.push("/");
+    }).then(() => setUsername(usernameInput.value));
+    window.location.reload();
   };
 
   if (userInfoStatus === "loading") return <Spinner />;
