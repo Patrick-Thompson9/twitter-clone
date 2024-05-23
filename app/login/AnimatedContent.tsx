@@ -31,7 +31,7 @@ function AnimatedContent() {
 
       //moon animation
       tl.to(moonRef.current, {
-        y: "-91%",
+        y: "-90%",
         duration: 5,
         ease: "power3.out",
       });
