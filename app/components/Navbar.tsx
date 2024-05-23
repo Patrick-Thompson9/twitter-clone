@@ -37,17 +37,17 @@ function Navbar() {
             {/* Mobile Link List */}
             <div
               className={clsx(
-                "fixed bottom-0 right-0 top-0 flex flex-col items-center gap-4 bg-slate-950/90 transition-transform duration-300 ease-in-out motion-reduce:transition-none w-screen md:w-[15vw]",
+                "fixed bottom-0 right-0 top-0 flex flex-col items-center gap-4 bg-slate-950/90 transition-transform duration-300 ease-in-out motion-reduce:transition-none w-screen md:w-[25vw] lg:w-[15vw]",
                 isOpen ? "translate-x-100" : "translate-x-[100%]"
               )}
             >
               <button
                 type="button"
-                className="absolute top-0 right-0 text-3xl mr-3 my-2 "
+                className="absolute top-0 right-0 text-3xl mr-3 my-2"
                 aria-expanded={isOpen}
                 onClick={() => setIsOpen(!isOpen)}
               >
-                {!isOpen ? <GiStack /> : <FaX />}
+                {!isOpen ? <GiStack /> : <FaX className="size-6 lg:size-8" />}
               </button>
               <ul className="grid justify-items-center mt-2 gap-8 divide-y divide-sky-200/70 w-screen md:w-fit">
                 {NavLinks.map((link, index) => (
