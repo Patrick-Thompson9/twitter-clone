@@ -37,7 +37,7 @@ function Navbar() {
             {/* Mobile Link List */}
             <div
               className={clsx(
-                "fixed bottom-0 right-0 top-0 flex flex-col items-center gap-4 bg-slate-950/90 transition-transform duration-300 ease-in-out motion-reduce:transition-none w-screen md:w-1/4",
+                "fixed bottom-0 right-0 top-0 flex flex-col items-center gap-4 bg-slate-950/90 transition-transform duration-300 ease-in-out motion-reduce:transition-none w-screen md:w-[15vw]",
                 isOpen ? "translate-x-100" : "translate-x-[100%]"
               )}
             >
