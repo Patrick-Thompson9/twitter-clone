@@ -34,7 +34,7 @@ function UsernameForm() {
       body: JSON.stringify({ username: usernameInput.value }),
     });
     setUsername(usernameInput.value);
-    router.refresh();
+    router.push("/");
   };
 
   if (userInfoStatus === "loading") return <Spinner />;
