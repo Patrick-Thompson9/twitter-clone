@@ -25,13 +25,12 @@ function LoginForm({ providers }: Props) {
 
   useEffect(() => {
     setInvalidLogin(false);
+    if (data) {
+      router.push("/");
+    }
   }, []);
 
   if (status === "loading") return <Spinner />;
-
-  if (data) {
-    router.push("/");
-  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
