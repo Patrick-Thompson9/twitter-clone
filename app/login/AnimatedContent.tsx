@@ -30,8 +30,17 @@ function AnimatedContent() {
       const tl = gsap.timeline();
 
       //moon animation
+      let yValue;
+      if (window.innerWidth < 600) {
+        yValue = "-86%";
+      } else if (window.innerWidth < 900) {
+        yValue = "-88%";
+      } else {
+        yValue = "-88.7%";
+      }
+
       tl.to(moonRef.current, {
-        y: "-90%",
+        y: yValue,
         duration: 5,
         ease: "power3.out",
       });
@@ -70,13 +79,13 @@ function AnimatedContent() {
       <img
         src="moon.svg"
         ref={moonRef}
-        className="moon absolute translate-y-[-100%] size-[200vw] object-cover object-center z-10"
+        className="moon absolute translate-y-[-100%] size-[200vw] object-cover object-center -z-10"
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="200 0 935 425"
-        className="absolute top-0 h-[30vw] w-full"
+        className="absolute top-0 h-[30vw] w-full -z-50"
         id="star-grid"
         ref={container}
         opacity={0}

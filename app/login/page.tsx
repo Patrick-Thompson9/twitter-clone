@@ -7,9 +7,9 @@ async function page() {
   const providers = await res.json();
 
   return (
-    <section className="flex flex-col place-items-center">
+    <section className="relative flex flex-col place-items-center">
       <AnimatedContent />
-      <span className="text-4xl md:text-7xl mt-20 text-center tracking-tight">
+      <span className="text-4xl md:text-7xl mt-20 text-center tracking-tight Z-50 text-sky-100">
         Login
       </span>
       <LoginForm providers={providers} />
