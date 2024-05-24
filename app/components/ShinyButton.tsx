@@ -1,10 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import clsx from "clsx";
+import { ReactNode } from "react";
 
 interface props {
   buttonText: string;
-  image?: string | null;
+  image?: string | ReactNode | null;
   classes?: string | null;
 }
 
@@ -41,7 +42,11 @@ function ShinyButton({ buttonText, image = null, classes = null }: props) {
       }}
     >
       <div className="flex items-center justify-center">
-        {image && <img src={image} alt="logo" className="size-8" />}
+        {image === null ? null : typeof image === "string" ? (
+          <img src={image} alt="logo" className="size-8" />
+        ) : (
+          image
+        )}
         <span
           className={clsx(
             textClasses,

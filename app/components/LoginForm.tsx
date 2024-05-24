@@ -6,6 +6,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import Spinner from "./Spinner";
+import { GiWolfHowl } from "react-icons/gi";
 
 type Provider = {
   name: string;
@@ -111,12 +112,18 @@ function LoginForm({ providers }: Props) {
                   className="mt-4 w-full"
                   onClick={async (e) => {
                     e.preventDefault();
-                    await signIn(provider.id);
+                    // await signIn(provider.id);
                   }}
                 >
                   <ShinyButton
                     buttonText={`Sign in with ${provider.name}`}
-                    image={`${provider.name}-logo.svg`}
+                    image={
+                      provider.name === "Credentials" ? (
+                        <GiWolfHowl className="size-8" />
+                      ) : (
+                        `${provider.name}-logo.svg`
+                      )
+                    }
                   />
                 </button>
               )
