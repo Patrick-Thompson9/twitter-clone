@@ -8,7 +8,7 @@ function BackButton() {
   return (
     <button
       onClick={() => router.back()}
-      className="flex justify-start items-center gap-2 text-xl sticky top-20 z-50 bg-slate-900 border-sky-200/25 border p-2 rounded-md place-self-start ml-2 mt-2 w-fit"
+      className="flex justify-start items-center gap-2 text-xl sticky top-20 z-50 bg-slate-900 border-sky-200/25 border p-2 rounded-md place-self-start ml-2 mt-2 w-fit hover:shadow hover:shadow-sky-200/75"
     >
       <FaArrowLeftLong />
       <span>Back</span>
