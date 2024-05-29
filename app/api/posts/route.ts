@@ -22,7 +22,9 @@ export async function GET(req: NextRequest, res: NextResponse) {
     return NextResponse.json({ post, likedByMe });
   } else {
     const parent = req.nextUrl.searchParams.get("parent") || null;
-    const posts = await Post.find({ parent })
+    const author = req.nextUrl.searchParams.get("author") || null;
+    const searchFilter = author ? { author } : { parent };
+    const posts = await Post.find(searchFilter)
       .populate("author")
       .sort({ createdAt: -1 })
       .limit(20)

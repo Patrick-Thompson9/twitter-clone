@@ -5,27 +5,54 @@ import BackButton from "../components/BackButton";
 import UserInfo from "@/types/user";
 import { useRouter } from "next/navigation";
 import { GiWolfHowl } from "react-icons/gi";
+import PostData from "@/types/post";
+import Post from "../components/Post";
 
 function page({ params }: { params: { username: string } }) {
   const router = useRouter();
   const [profile, setProfile] = useState<UserInfo>();
   const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState<PostData[]>([]);
+  const [postsLikedByMe, setPostsLikedByMe] = useState<string[]>([]);
 
   const getUser = async () => {
-    const user = await axios
-      .get(`/api/users?username=${params.username}`)
-      .then((res) => {
-        setProfile(res.data);
-        setIsLoading(false);
-      });
+    try {
+      const res = await axios.get(`/api/users?username=${params.username}`);
+      setProfile(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getPosts = async () => {
+    if (!profile) return;
+    try {
+      const res = await axios.get(`/api/posts?author=${profile._id}`);
+      console.log(res.data);
+      setPosts(res.data.posts);
+      setPostsLikedByMe(res.data.idsLikedByMe);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
     getUser();
   }, [params]);
 
+  useEffect(() => {
+    getPosts();
+  }, [profile]);
+
   if (!profile && !isLoading) {
     router.push("/error/404");
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  } else if (!profile) {
+    return <div>No user found :/</div>;
   }
 
   return (
@@ -65,6 +92,22 @@ function page({ params }: { params: { username: string } }) {
           </div>
         </div>
         <span>{profile?.bio ? profile.bio : "Howl's biggest supporter!"}</span>
+      </div>
+      <div className="flex flex-col place-items-center justify-center w-full">
+        <div className="flex mt-2 text-3xl font-medium">Posts</div>
+        {posts?.length === 0 ? (
+          <div className="text-xl">No posts yet</div>
+        ) : (
+          posts.map((post, index) => {
+            return (
+              <Post
+                key={index}
+                postData={post}
+                likedByMeDefault={postsLikedByMe.includes(post._id)}
+              />
+            );
+          })
+        )}
       </div>
     </section>
   );
