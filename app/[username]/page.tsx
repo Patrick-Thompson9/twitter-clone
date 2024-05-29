@@ -32,17 +32,21 @@ function page({ params }: { params: { username: string } }) {
       <BackButton />
       <div className="flex flex-col place-items-center ">
         <div className="flex flex-col justify-center items-start">
-          <div className="relative mb-2 w-full">
-            {/* Timeline Image */}
-            <img src={profile?.image} className="w-full h-20 md:h-40" />
+          <span className="text-5xl">{profile?.name}</span>
+          <span className="text-sky-200/50 text-2xl">{profile?.username}</span>
+          <div className="relative my-2 w-full">
+            <img
+              src={
+                profile?.timeline ? profile.timeline : "default-timeline.jpg"
+              }
+              className="w-full h-20 md:h-40"
+            />
             <img
               src={profile?.image}
               className="absolute bottom-0 size-20 rounded-full border border-sky-200 box"
               style={{ boxShadow: "0 0 0 5px #0f172a" }}
             />
           </div>
-          <span className="text-5xl">{profile?.name}</span>
-          <span className="text-sky-200/50 text-2xl">{profile?.username}</span>
         </div>
       </div>
     </section>

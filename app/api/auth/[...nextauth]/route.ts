@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
           placeholder: "Password",
         },
       },
-      async authorize(credentials): Promise<User | null> {
+      async authorize(credentials) {
         // TODO: Implement database check instead of hardcoded users
         const users = [
           {
@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
             password: "password",
           },
           {
-            id: "2",
+            id: "663ae5a73f43154a2e1a6007",
             name: "Jane Doe",
             username: "JaneDoe",
             email: "meatball@yahoo.com",
