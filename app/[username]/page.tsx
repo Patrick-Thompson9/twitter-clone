@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import BackButton from "../components/BackButton";
 import UserInfo from "@/types/user";
 import { useRouter } from "next/navigation";
+import { GiWolfHowl } from "react-icons/gi";
 
 function page({ params }: { params: { username: string } }) {
   const router = useRouter();
@@ -41,11 +42,23 @@ function page({ params }: { params: { username: string } }) {
               }
               className="w-full h-20 md:h-40"
             />
-            <img
-              src={profile?.image}
-              className="absolute bottom-0 size-20 rounded-full border border-sky-200 box"
-              style={{ boxShadow: "0 0 0 5px #0f172a" }}
-            />
+            {profile?.image ? (
+              <img
+                src={profile?.image}
+                className="absolute bottom-0 size-20 rounded-full border border-sky-200 box"
+                style={{ boxShadow: "0 0 0 5px #0f172a" }}
+              />
+            ) : (
+              <GiWolfHowl
+                className="size-20 absolute bottom-0 rounded-full border border-sky-200 box bg-slate-950"
+                style={{ boxShadow: "0 0 0 5px #0f172a" }}
+              />
+            )}
+          </div>
+          <div className="flex justify-between items-center w-full px-2">
+            <span>Follow</span>
+            <span>Message</span>
+            <span>Share</span>
           </div>
         </div>
       </div>
