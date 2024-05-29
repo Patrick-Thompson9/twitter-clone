@@ -6,6 +6,8 @@ const UserSchema = new Schema({
   email: String,
   image: String,
   username: String,
+  timeline: String,
+  bio: String,
 });
 
 const User = models?.User || model("User", UserSchema);

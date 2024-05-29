@@ -5,6 +5,8 @@ type UserInfo = {
   _id: string;
   image: string;
   name: string;
+  timeline: string;
+  bio: string;
 };
 
 export default UserInfo;
