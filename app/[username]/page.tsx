@@ -30,7 +30,6 @@ function page({ params }: { params: { username: string } }) {
     if (!profile) return;
     try {
       const res = await axios.get(`/api/posts?author=${profile._id}`);
-      console.log(res.data);
       setPosts(res.data.posts);
       setPostsLikedByMe(res.data.idsLikedByMe);
     } catch (error) {
