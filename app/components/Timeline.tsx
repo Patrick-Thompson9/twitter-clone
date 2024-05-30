@@ -9,6 +9,19 @@ interface props {
 function Timeline({ timeline }: props) {
   const [isFileNearby, setIsFileNearby] = useState(false);
   const [fileHover, setFileHover] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleUpload = async (e: React.DragEvent, files: File[]) => {
+    e.preventDefault();
+    setIsUploading(true);
+    const data = new FormData();
+    data.append("timeline", files[0]);
+    await fetch("/api/upload", {
+      method: "POST",
+      body: data,
+    });
+    setIsUploading(false);
+  };
 
   return (
     <div
@@ -23,6 +36,7 @@ function Timeline({ timeline }: props) {
         onDragLeave={() => setFileHover(false)}
         onFrameDragEnter={() => setIsFileNearby(true)}
         onFrameDragLeave={() => setIsFileNearby(false)}
+        onDrop={() => handleUpload}
       >
         <img
           src={timeline ? timeline : "default-timeline.jpg"}
