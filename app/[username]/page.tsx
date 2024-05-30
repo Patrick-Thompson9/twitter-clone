@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { GiWolfHowl } from "react-icons/gi";
 import PostData from "@/types/post";
 import Post from "../components/Post";
+import Timeline from "../components/Timeline";
 
 function page({ params }: { params: { username: string } }) {
   const router = useRouter();
@@ -63,12 +64,10 @@ function page({ params }: { params: { username: string } }) {
           <span className="text-5xl">{profile?.name}</span>
           <span className="text-sky-200/50 text-2xl">{profile?.username}</span>
           <div className="relative my-2 w-full">
-            <img
-              src={
-                profile?.timeline ? profile.timeline : "default-timeline.jpg"
-              }
-              className="w-full h-40 md:h-60"
-            />
+            {/* Timeline photo */}
+            <Timeline timeline={profile?.timeline} />
+
+            {/* Profile Pic */}
             {profile?.image ? (
               <img
                 src={profile?.image}
@@ -81,6 +80,8 @@ function page({ params }: { params: { username: string } }) {
                 style={{ boxShadow: "0 0 0 5px #0f172a" }}
               />
             )}
+
+            {/* Widgets */}
             <div className="absolute bottom-1 right-0 flex place-self-end justify-center items-center px-2 gap-2">
               <button className="bg-black rounded-full text-sm px-2 py-1 border border-sky-200/50 hover:shadow hover:shadow-sky-200/75 focus:outline-none focus:ring-0 focus:border-sky-200 focus:border-2">
                 Follow
