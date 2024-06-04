@@ -14,6 +14,8 @@ function Timeline({ timeline }: props) {
   const handleUpload = async (e: React.DragEvent, files: File[]) => {
     e.preventDefault();
     setIsUploading(true);
+    setFileHover(false);
+    setIsFileNearby(false);
     const data = new FormData();
     data.append("timeline", files[0]);
     await fetch("/api/upload", {
@@ -36,7 +38,11 @@ function Timeline({ timeline }: props) {
         onDragLeave={() => setFileHover(false)}
         onFrameDragEnter={() => setIsFileNearby(true)}
         onFrameDragLeave={() => setIsFileNearby(false)}
-        onDrop={() => handleUpload}
+        onDrop={(files: FileList | null, event: React.DragEvent) => {
+          if (files) {
+            handleUpload(event, Array.from(files));
+          }
+        }}
       >
         <img
           src={timeline ? timeline : "default-timeline.jpg"}
