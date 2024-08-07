@@ -1,5 +1,5 @@
 # Howl (Twitter-Clone)
-This is a full-stack social platform application made to have similar functionality to Twitter but with a fresh design. This was made entirely by myself. To view a demo of the app in it's state. Please view the [Howl_Demo.mp4]() file. 
+This is a full-stack social platform application made to have similar functionality to Twitter but with a fresh design. This was made entirely by myself. To view a demo of the app in it's state. Please view the [Howl_Demo.mp4](https://github.com/Patrick-Thompson9/twitter-clone/blob/main/Howl_Demo.mp4) file. You will need to download it to play it.
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
