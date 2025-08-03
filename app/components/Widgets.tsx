@@ -115,7 +115,8 @@ function Widgets({
                 width={12}
                 play={true}
                 perspective={100}
-                numbers={widget.state?.toString() || "0"}
+                numbers={"0"}
+                // numbers={widget.state?.toString() || "0"}
               />
             </button>
           </div>
@@ -130,7 +131,8 @@ function Widgets({
           width={12}
           play={true}
           perspective={100}
-          numbers={likeCount?.toString() || "0"}
+          numbers={"0"}
+          // numbers={likeCount?.toString() || "0"}
         />
         {widgets?.map((widget, index) => (
           <button
