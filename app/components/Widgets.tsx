@@ -113,7 +113,7 @@ function Widgets({
               <FlipNumbers
                 height={12}
                 width={12}
-                play
+                play={true}
                 perspective={100}
                 numbers={widget.state.toString()}
               />
@@ -128,7 +128,7 @@ function Widgets({
         <FlipNumbers
           height={12}
           width={12}
-          play
+          play={true}
           perspective={100}
           numbers={likeCount.toString()}
         />
