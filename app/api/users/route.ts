@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { initMongoose } from "../auth/[...nextauth]/lib/mongoose";
 import User from "../../models/User";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/lib/auth";
 
 export async function GET(req: NextRequest, res: NextResponse) {
   await initMongoose();
