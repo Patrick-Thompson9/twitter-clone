@@ -21,8 +21,8 @@ function ShinyButton({ buttonText, image = null, classes = null }: props) {
         radialGradientClasses,
         classes
       )}
-      initial={{ "--x": "100%" }}
-      animate={{ "--x": "-75%" }}
+      initial={{ "--x": "100%" } as any}
+      animate={{ "--x": "-75%" } as any}
       whileTap={{ scale: 0.95 }}
       whileHover={{ scale: 1.03 }}
       transition={{
