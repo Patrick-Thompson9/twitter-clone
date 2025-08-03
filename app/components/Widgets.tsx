@@ -110,13 +110,14 @@ function Widgets({
             >
               {widget.icon}
               <span className="hidden md:inline">{`${widget.name}s: `}</span>
-              <FlipNumbers
+              <span>{widget.state.toString()}</span>
+              {/* <FlipNumbers
                 height={12}
                 width={12}
                 play
                 perspective={100}
                 numbers={widget.state.toString()}
-              />
+              /> */}
             </button>
           </div>
         ))}
@@ -125,13 +126,14 @@ function Widgets({
   } else {
     return (
       <div className="flex gap-3 mt-2 justify-start items-center">
-        <FlipNumbers
+        <span>{likeCount.toString()}</span>
+        {/* <FlipNumbers
           height={12}
           width={12}
           play
           perspective={100}
           numbers={likeCount.toString()}
-        />
+        /> */}
         {widgets?.map((widget, index) => (
           <button
             key={index}
