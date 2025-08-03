@@ -9,7 +9,7 @@ import PostData from "@/types/post";
 import Post from "../components/Post";
 import Timeline from "../components/Timeline";
 
-function page({ params }: { params: { username: string } }) {
+function Page({ params }: { params: { username: string } }) {
   const router = useRouter();
   const [profile, setProfile] = useState<UserInfo>();
   const [isLoading, setIsLoading] = useState(true);
@@ -113,4 +113,4 @@ function page({ params }: { params: { username: string } }) {
   );
 }
 
-export default page;
+export default Page;
