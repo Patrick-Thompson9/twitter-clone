@@ -9,7 +9,7 @@ import useUserInfo from "@/hooks/useUserInfo";
 import Widgets from "@/app/components/Widgets";
 import BackButton from "@/app/components/BackButton";
 
-function page({ params }: { params: { username: string; id: string } }) {
+function Page({ params }: { params: { username: string; id: string } }) {
   const { userInfo, userInfoStatus } = useUserInfo();
   const [post, setPost] = useState<PostData>();
   const [replies, setReplies] = useState<PostData[]>([]);
@@ -77,4 +77,4 @@ function page({ params }: { params: { username: string; id: string } }) {
   );
 }
 
-export default page;
+export default Page;

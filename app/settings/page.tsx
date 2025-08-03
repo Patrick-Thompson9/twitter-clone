@@ -1,7 +1,7 @@
 "use client";
 import LogInLogOut from "../components/LogInLogOut";
 
-function page() {
+function Page() {
   return (
     <section className="flex justify-center">
       <div className="flex flex-col justify-start items-start w-full md:w-4/5 bg-slate-950 border border-sky-200/75 mt-20 rounded-lg py-2 px-4 md:py-4 md:px-6 gap-2 font-medium text-lg">
@@ -24,4 +24,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

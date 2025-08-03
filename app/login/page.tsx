@@ -2,7 +2,7 @@ import React from "react";
 import LoginForm from "../components/LoginForm";
 import AnimatedContent from "./AnimatedContent";
 
-async function page() {
+async function Page() {
   const res = await fetch("http://localhost:3000/api/auth/providers");
   const providers = await res.json();
 
@@ -17,4 +17,4 @@ async function page() {
   );
 }
 
-export default page;
+export default Page;
