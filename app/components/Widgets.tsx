@@ -113,10 +113,9 @@ function Widgets({
               <FlipNumbers
                 height={12}
                 width={12}
-                play={true}
+                play
                 perspective={100}
-                numbers={"0"}
-                // numbers={widget.state?.toString() || "0"}
+                numbers={widget.state.toString()}
               />
             </button>
           </div>
@@ -129,10 +128,9 @@ function Widgets({
         <FlipNumbers
           height={12}
           width={12}
-          play={true}
+          play
           perspective={100}
-          numbers={"0"}
-          // numbers={likeCount?.toString() || "0"}
+          numbers={likeCount.toString()}
         />
         {widgets?.map((widget, index) => (
           <button
