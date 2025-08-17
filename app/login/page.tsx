@@ -9,7 +9,7 @@ async function Page() {
   return (
     <section className="relative flex flex-col place-items-center">
       <AnimatedContent />
-      <span className="text-4xl md:text-7xl mt-20 text-center tracking-tight Z-50 text-sky-100 drop-shadow-[0_3px_6px_rgba(0,0,0,0.8)]">
+      <span className="text-4xl md:text-7xl mt-20 text-center tracking-wide Z-50 text-sky-100 drop-shadow-[0_3px_6px_rgba(0,0,0,1)]">
         Login
       </span>
       <LoginForm providers={providers} />
