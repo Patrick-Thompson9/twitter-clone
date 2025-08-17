@@ -36,7 +36,7 @@ function AnimatedContent() {
       } else if (window.innerWidth < 900) {
         yValue = "-88%";
       } else {
-        yValue = "-88.7%";
+        yValue = "-89.13%";
       }
 
       tl.to(moonRef.current, {
